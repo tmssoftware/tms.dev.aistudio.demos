@@ -1,0 +1,105 @@
+object KeysForm: TKeysForm
+  Left = 0
+  Top = 0
+  BorderStyle = Single
+  Caption = 'API keys'
+  ClientHeight = 160
+  ClientWidth = 492
+  Position = MainFormCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  OnClose = FormClose
+  DesignerMasterStyle = 0
+  object edtOpenAI: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 0
+    Position.X = 107.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 377.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object edtGemini: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 1
+    Position.X = 107.000000000000000000
+    Position.Y = 38.000000000000000000
+    Size.Width = 377.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object edtBFL: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 2
+    Position.X = 107.000000000000000000
+    Position.Y = 68.000000000000000000
+    Size.Width = 377.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object edtStability: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 3
+    Position.X = 107.000000000000000000
+    Position.Y = 98.000000000000000000
+    Size.Width = 377.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object edtReve: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 4
+    Position.X = 107.000000000000000000
+    Position.Y = 128.000000000000000000
+    Size.Width = 377.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object Label1: TLabel
+    Position.X = 8.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 91.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'OpenAI'
+    TabOrder = 5
+  end
+  object Label2: TLabel
+    Position.X = 8.000000000000000000
+    Position.Y = 38.000000000000000000
+    Size.Width = 91.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Gemini'
+    TabOrder = 9
+  end
+  object Label3: TLabel
+    Position.X = 8.000000000000000000
+    Position.Y = 68.000000000000000000
+    Size.Width = 91.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'BlackForestLabs'
+    TabOrder = 8
+  end
+  object Label4: TLabel
+    Position.X = 8.000000000000000000
+    Position.Y = 98.000000000000000000
+    Size.Width = 91.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Stability'
+    TabOrder = 7
+  end
+  object Label5: TLabel
+    Position.X = 8.000000000000000000
+    Position.Y = 128.000000000000000000
+    Size.Width = 91.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Reve'
+    TabOrder = 6
+  end
+end

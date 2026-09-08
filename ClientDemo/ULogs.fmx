@@ -1,0 +1,26 @@
+object FormLog: TFormLog
+  Left = 0
+  Top = 0
+  Caption = 'Server logs'
+  ClientHeight = 460
+  ClientWidth = 520
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  DesignerMasterStyle = 0
+  object memLogs: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    ReadOnly = True
+    TextSettings.WordWrap = True
+    Align = Client
+    Size.Width = 520.000000000000000000
+    Size.Height = 460.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Viewport.Width = 516.000000000000000000
+    Viewport.Height = 456.000000000000000000
+  end
+end

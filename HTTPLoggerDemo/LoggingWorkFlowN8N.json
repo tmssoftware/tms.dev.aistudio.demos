@@ -1,0 +1,295 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "completion",
+        "respondWith": "returnBinary",
+        "completionTitle": "image",
+        "completionMessage": "Rendered Chart",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        672,
+        224
+      ],
+      "id": "b767f56d-5756-46eb-a34d-5bbb106c57a6",
+      "name": "Form",
+      "webhookId": "2c1afc4f-33ae-4398-8bf5-dc9a7cd54fe9"
+    },
+    {
+      "parameters": {
+        "formTitle": "Check logging Stats",
+        "formDescription": "Check logging stats for your mcp server",
+        "options": {
+          "buttonLabel": "Start Tool"
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        -240,
+        224
+      ],
+      "id": "05e9700b-3fb7-4aa6-848f-0c2cc68bb221",
+      "name": "On form submission",
+      "webhookId": "28eb5fc2-9264-4dde-83c6-622eda5e5a72"
+    },
+    {
+      "parameters": {
+        "endpointUrl": "http://88.198.69.227:8934/mcp",
+        "serverTransport": "httpStreamable",
+        "include": "selected",
+        "includeTools": [
+          "get-daily-logs",
+          "get-logs-by-method",
+          "get-log-stats"
+        ]
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1.1,
+      "position": [
+        240,
+        416
+      ],
+      "id": "e87d4979-3d0a-4e5a-afa5-7d4638f7122b",
+      "name": "MCP Client1",
+      "alwaysOutputData": false,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "chartType": "={{ $json.output.type }}",
+        "labelsMode": "array",
+        "labelsArray": "={{ $json.output.data.labels }}",
+        "data": "={{ $json.output.data.datasets[0].data }}",
+        "output": "={{ $json.output.data.datasets[0].label }}",
+        "chartOptions": {
+          "backgroundColor": "="
+        },
+        "datasetOptions": {}
+      },
+      "type": "n8n-nodes-base.quickChart",
+      "typeVersion": 1,
+      "position": [
+        496,
+        224
+      ],
+      "id": "c20463a9-a8d8-47cc-8ab8-cbf8e5adeea8",
+      "name": "QuickChart1",
+      "notesInFlow": false
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"$schema\": \"http://json-schema.org/draft-07/schema#\",\n  \"title\": \"Strict QuickChart Config\",\n  \"type\": \"object\",\n  \"required\": [\"type\", \"data\"],\n  \"properties\": {\n    \"type\": {\n      \"type\": \"string\",\n      \"enum\": [\"bar\", \"line\", \"pie\", \"doughnut\", \"radar\", \"scatter\", \"bubble\", \"progressBar\", \"gauge\", \"radialGauge\", \"boxplot\", \"violin\", \"sankey\", \"funnel\"] \n    },\n    \"data\": {\n      \"type\": \"object\",\n      \"required\": [\"labels\", \"datasets\"],\n      \"properties\": {\n        \"labels\": {\n          \"type\": \"array\",\n          \"items\": { \"type\": [\"string\", \"number\"] }\n        },\n        \"datasets\": {\n          \"type\": \"array\",\n          \"items\": {\n            \"type\": \"object\",\n            \"required\": [\"data\"],\n            \"properties\": {\n              \"label\": { \"type\": \"string\" },\n              \"data\": {\n                \"type\": \"array\",\n                \"items\": { \"type\": [\"number\", \"object\", \"null\"] }\n              },\n              \"backgroundColor\": {\n                \"oneOf\": [\n                  { \"type\": \"string\" },\n                  { \"type\": \"array\", \"items\": { \"type\": \"string\" } }\n                ]\n              },\n              \"borderColor\": {\n                \"oneOf\": [\n                  { \"type\": \"string\" },\n                  { \"type\": \"array\", \"items\": { \"type\": \"string\" } }\n                ]\n              },\n              \"fill\": { \"type\": [\"boolean\", \"string\"] }\n            },\n            \"additionalProperties\": false\n          }\n        }\n      },\n      \"additionalProperties\": false\n    },\n    \"options\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"responsive\": { \"type\": \"boolean\" },\n        \"maintainAspectRatio\": { \"type\": \"boolean\" },\n        \"title\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"display\": { \"type\": \"boolean\" },\n            \"text\": { \"type\": \"string\" }\n          },\n          \"additionalProperties\": false\n        },\n        \"scales\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"x\": { \"type\": \"object\" },\n            \"y\": { \"type\": \"object\" },\n            \"xAxes\": { \"type\": \"array\", \"items\": { \"type\": \"object\" } },\n            \"yAxes\": { \"type\": \"array\", \"items\": { \"type\": \"object\" } }\n          },\n          \"additionalProperties\": false\n        },\n        \"plugins\": { \"type\": \"object\" }\n      },\n      \"additionalProperties\": false\n    },\n    \"version\": {\n      \"type\": \"string\",\n      \"enum\": [\"2\", \"3\", \"4\"]\n    },\n    \"backgroundColor\": { \"type\": \"string\" },\n    \"width\": { \"type\": \"integer\", \"minimum\": 1 },\n    \"height\": { \"type\": \"integer\", \"minimum\": 1 },\n    \"devicePixelRatio\": { \"type\": \"integer\", \"enum\": [1, 2] },\n    \"format\": { \"type\": \"string\", \"enum\": [\"png\", \"webp\", \"jpg\", \"svg\", \"pdf\", \"base64\"] },\n    \"encoding\": { \"type\": \"string\", \"enum\": [\"url\", \"base64\"] }\n  },\n  \"additionalProperties\": false\n}\n",
+        "autoFix": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        416,
+        480
+      ],
+      "id": "72815ed1-06b8-44d1-bd08-b4cfc3ad1e11",
+      "name": "Structured Output Parser1"
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldType": "html",
+              "html": "<h3>Available Tools in this MCP Server</h3>\n<ul>\n  <li><strong>get-daily-logs</strong><br>\n      Get logs for a specific date<br>\n      Parameters: date (optional)</li>\n  \n  <li><strong>get-logs-by-method</strong><br>\n      Get statistics grouped by method<br>\n      Parameters: None</li>\n  \n  <li><strong>get-log-stats</strong><br>\n      Get overall logging statistics<br>\n      Parameters: None</li>\n</ul>\n\n\n\n"
+            },
+            {
+              "fieldLabel": "Prompt",
+              "fieldType": "textarea",
+              "placeholder": "Insert your prompt here..."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        -64,
+        224
+      ],
+      "id": "12c450d1-e309-46c7-9a10-5369081b696f",
+      "name": "Form1",
+      "webhookId": "535f74c3-06c8-4ff0-9cbd-f24bc032ab95"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.Prompt }}",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        144,
+        224
+      ],
+      "id": "0ca4bbd4-bc85-46f2-bf6c-78784bd2fd1e",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "claude-opus-4-20250514",
+          "mode": "list",
+          "cachedResultName": "Claude Opus 4"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.3,
+      "position": [
+        64,
+        416
+      ],
+      "id": "d15d4fa0-38be-4c8c-861f-0c44c58ac40e",
+      "name": "Anthropic Chat Model",
+      "credentials": {
+        "anthropicApi": {
+          "id": "FW2nKE0k0dCeXpY1",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "claude-sonnet-4-20250514",
+          "cachedResultName": "Claude 4 Sonnet"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.3,
+      "position": [
+        416,
+        608
+      ],
+      "id": "b20fc546-d6c5-4047-baf4-bf9f8ae9f113",
+      "name": "Anthropic Chat Model1",
+      "credentials": {
+        "anthropicApi": {
+          "id": "FW2nKE0k0dCeXpY1",
+          "name": "Anthropic account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Form": {
+      "main": [
+        []
+      ]
+    },
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Form1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MCP Client1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ],
+      "main": [
+        []
+      ]
+    },
+    "QuickChart1": {
+      "main": [
+        [
+          {
+            "node": "Form",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser1": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Form1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "QuickChart1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Structured Output Parser1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "558d88703fb65b2d0e44613bc35916258b0f0bf983c5d4730c00c424b77ca36a"
+  }
+}

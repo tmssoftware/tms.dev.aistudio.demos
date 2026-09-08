@@ -1,0 +1,132 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'AI image processing'
+  ClientHeight = 764
+  ClientWidth = 1106
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object Button1: TButton
+    Position.X = 16.000000000000000000
+    Position.Y = 16.000000000000000000
+    TabOrder = 0
+    Text = 'Open'
+    OnClick = Button1Click
+  end
+  object Button3: TButton
+    Position.X = 16.000000000000000000
+    Position.Y = 432.000000000000000000
+    Size.Width = 169.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    Text = 'Describe the picture'
+    OnClick = Button3Click
+  end
+  object OpenDialog1: TOpenDialog
+    Filter = 
+      'JPEG files|*.jpg|PNG files|*.png|WebP files|*.webp|All image fil' +
+      'es|*.*'
+    Left = 952
+    Top = 16
+  end
+  object ComboBox1: TComboBox
+    Items.Strings = (
+      'OpenAI'
+      'Claude'
+      'Gemini')
+    ItemIndex = 0
+    Position.X = 384.000000000000000000
+    Position.Y = 432.000000000000000000
+    Size.Width = 129.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 5
+    OnChange = ComboBox1Change
+  end
+  object ProgressBar1: TProgressBar
+    Orientation = Horizontal
+    Position.X = 520.000000000000000000
+    Position.Y = 432.000000000000000000
+    Size.Width = 569.000000000000000000
+    Size.Height = 20.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object Timer1: TTimer
+    Enabled = False
+    Interval = 500
+    OnTimer = Timer1Timer
+    Left = 352
+    Top = 8
+  end
+  object Button2: TButton
+    Position.X = 200.000000000000000000
+    Position.Y = 432.000000000000000000
+    Size.Width = 169.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 11
+    Text = 'Compare the two pictures'
+    OnClick = Button2Click
+  end
+  object Button4: TButton
+    Position.X = 560.000000000000000000
+    Position.Y = 16.000000000000000000
+    TabOrder = 12
+    Text = 'Open'
+    OnClick = Button4Click
+  end
+  object Memo1: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    Position.X = 16.000000000000000000
+    Position.Y = 462.000000000000000000
+    Size.Width = 1073.000000000000000000
+    Size.Height = 294.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 16
+    Viewport.Width = 1069.000000000000000000
+    Viewport.Height = 290.000000000000000000
+  end
+  object ImageControl1: TImageControl
+    Position.X = 8.000000000000000000
+    Position.Y = 56.000000000000000000
+    Size.Width = 529.000000000000000000
+    Size.Height = 361.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 18
+  end
+  object ImageControl2: TImageControl
+    Position.X = 560.000000000000000000
+    Position.Y = 56.000000000000000000
+    Size.Width = 529.000000000000000000
+    Size.Height = 361.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 17
+  end
+  object TMSMCPCloudAI1: TTMSMCPCloudAI
+    Service = aiOpenAI
+    Settings.GeminiModel = 'gemini-2.5-flash'
+    Settings.OpenAIModel = 'gpt-5.4-mini-2026-03-17'
+    Settings.OpenAISoundModel = 'gpt-4o-mini-tts'
+    Settings.OpenAITranscribeModel = 'whisper-1'
+    Settings.GrokModel = 'grok-4-1-fast-reasoning'
+    Settings.ClaudeModel = 'claude-sonnet-4-6'
+    Settings.OllamaModel = 'llama3.2:latest'
+    Settings.DeepSeekModel = 'deepseek-chat'
+    Settings.PerplexityModel = 'sonar-pro'
+    Settings.OllamaHost = 'localhost'
+    Settings.OllamaPath = '/api/chat'
+    Settings.LlamaCppHost = 'localhost'
+    Settings.LlamaCppPath = '/v1/chat/completions'
+    Settings.MistralModel = 'mistral-large-latest'
+    Settings.MistralTranscribeModel = 'voxtral-mini-2507'
+    Tools = <>
+    OnExecuted = TMSMCPCloudAI1Executed
+    Left = 160
+    Top = 8
+  end
+end

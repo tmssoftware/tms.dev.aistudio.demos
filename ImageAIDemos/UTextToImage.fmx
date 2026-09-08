@@ -1,0 +1,151 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Simple text to image generation demo'
+  ClientHeight = 640
+  ClientWidth = 640
+  Position = ScreenCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object Panel1: TPanel
+    Align = Top
+    Size.Width = 640.000000000000000000
+    Size.Height = 152.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object Button1: TButton
+      Anchors = [akTop, akRight]
+      Position.X = 552.000000000000000000
+      Position.Y = 121.000000000000000000
+      TabOrder = 0
+      Text = 'Generate'
+      TextSettings.Trimming = None
+      OnClick = Button1Click
+    end
+    object Memo1: TMemo
+      Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+      DataDetectorTypes = []
+      Lines.Strings = (
+        
+          'An ancient Delphi software developer meeting a humanoid software' +
+          ' developer robot.')
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 8.000000000000000000
+      Position.Y = 32.000000000000000000
+      Size.Width = 624.000000000000000000
+      Size.Height = 81.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Viewport.Width = 624.000000000000000000
+      Viewport.Height = 81.000000000000000000
+    end
+    object ComboBox1: TComboBox
+      Anchors = [akTop, akRight]
+      Items.Strings = (
+        'OpenAI'
+        'Gemini'
+        'BlackForestLabs'
+        'Stability'
+        'Reve')
+      Position.X = 424.000000000000000000
+      Position.Y = 121.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+    end
+    object Label1: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 8.000000000000000000
+      Text = 'Prompt'
+      TabOrder = 3
+    end
+    object Button2: TButton
+      Anchors = [akTop, akRight]
+      Position.X = 336.000000000000000000
+      Position.Y = 121.000000000000000000
+      TabOrder = 4
+      Text = 'API Keys'
+      TextSettings.Trimming = None
+      OnClick = Button2Click
+    end
+    object Button3: TButton
+      Position.X = 8.000000000000000000
+      Position.Y = 121.000000000000000000
+      Size.Width = 137.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 5
+      Text = 'Save generated image'
+      TextSettings.Trimming = None
+      OnClick = Button3Click
+    end
+  end
+  object Panel2: TPanel
+    Align = Bottom
+    Position.Y = 488.000000000000000000
+    Size.Width = 640.000000000000000000
+    Size.Height = 152.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    object Memo2: TMemo
+      Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+      DataDetectorTypes = []
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 8.000000000000000000
+      Position.Y = 33.000000000000000000
+      Size.Width = 624.000000000000000000
+      Size.Height = 111.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Viewport.Width = 624.000000000000000000
+      Viewport.Height = 111.000000000000000000
+    end
+    object Label2: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 8.000000000000000000
+      Text = 'Logs'
+      TabOrder = 1
+    end
+  end
+  object Image1: TImage
+    MultiResBitmap = <
+      item
+      end>
+    Align = Client
+    Size.Width = 640.000000000000000000
+    Size.Height = 336.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object ProgressBar1: TProgressBar
+    Align = Bottom
+    Orientation = Horizontal
+    Position.Y = 480.000000000000000000
+    Size.Width = 640.000000000000000000
+    Size.Height = 8.000000000000000000
+    Size.PlatformDefault = False
+    Visible = False
+  end
+  object TMSMCPCloudImageAI1: TTMSMCPCloudImageAI
+    OnImageGenerated = TMSMCPCloudImageAI1ImageGenerated
+    OnRequestError = TMSMCPCloudImageAI1RequestError
+    Left = 112
+    Top = 280
+  end
+  object SaveDialog1: TSaveDialog
+    DefaultExt = 'png'
+    Filter = 'PNG|*.png'
+    Left = 248
+    Top = 280
+  end
+  object Timer1: TTimer
+    Enabled = False
+    Interval = 25
+    OnTimer = Timer1Timer
+    Left = 344
+    Top = 280
+  end
+end

@@ -1,0 +1,180 @@
+object Form3: TForm3
+  Left = 0
+  Top = 0
+  Caption = 'Change text within images'
+  ClientHeight = 700
+  ClientWidth = 800
+  Position = ScreenCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  OnResize = FormResize
+  DesignerMasterStyle = 0
+  object S: TPanel
+    Align = Top
+    Size.Width = 800.000000000000000000
+    Size.Height = 70.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object ComboBox1: TComboBox
+      Anchors = [akTop, akRight]
+      Items.Strings = (
+        'OpenAI'
+        'Gemini'
+        'BlackForestLabs'
+        'Reve')
+      Position.X = 507.000000000000000000
+      Position.Y = 38.000000000000000000
+      Size.Width = 148.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+    end
+    object Button1: TButton
+      Anchors = [akTop, akRight]
+      Position.X = 663.000000000000000000
+      Position.Y = 38.000000000000000000
+      Size.Width = 129.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Change text'
+      TextSettings.Trimming = None
+      OnClick = Button1Click
+    end
+    object Button2: TButton
+      Position.X = 8.000000000000000000
+      Position.Y = 38.000000000000000000
+      Size.Width = 113.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = 'Load image'
+      TextSettings.Trimming = None
+      OnClick = Button2Click
+    end
+    object Button3: TButton
+      Anchors = [akTop, akRight]
+      Position.X = 400.000000000000000000
+      Position.Y = 38.000000000000000000
+      Size.Width = 99.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+      Text = 'API Keys'
+      TextSettings.Trimming = None
+      OnClick = Button3Click
+    end
+    object Edit1: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 4
+      Text = 'Change the text "Chris" to "Freddy"'
+      Position.X = 73.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 719.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object Label2: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 57.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Prompt'
+      TabOrder = 5
+    end
+    object Button4: TButton
+      Position.X = 129.000000000000000000
+      Position.Y = 38.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 6
+      Text = 'Save generated image'
+      TextSettings.Trimming = None
+      OnClick = Button4Click
+    end
+  end
+  object Image1: TImage
+    MultiResBitmap = <
+      item
+      end>
+    Align = Client
+    Size.Width = 400.000000000000000000
+    Size.Height = 510.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object Image2: TImage
+    MultiResBitmap = <
+      item
+      end>
+    Align = Left
+    Position.Y = 70.000000000000000000
+    Size.Width = 400.000000000000000000
+    Size.Height = 510.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object Panel2: TPanel
+    Align = Bottom
+    Position.Y = 580.000000000000000000
+    Size.Width = 800.000000000000000000
+    Size.Height = 120.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 4
+    object Memo1: TMemo
+      Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+      DataDetectorTypes = []
+      Anchors = [akLeft, akTop, akRight, akBottom]
+      Position.X = 8.000000000000000000
+      Position.Y = 33.000000000000000000
+      Size.Width = 784.000000000000000000
+      Size.Height = 79.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Viewport.Width = 780.000000000000000000
+      Viewport.Height = 75.000000000000000000
+    end
+    object Label1: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 8.000000000000000000
+      Text = 'Logs'
+      TabOrder = 1
+    end
+  end
+  object OpenDialog1: TOpenDialog
+    Filter = 'PNG|*.png|JPEG|*.jpg;*.jpeg'
+    Left = 56
+    Top = 112
+  end
+  object ProgressBar1: TProgressBar
+    Align = Bottom
+    Orientation = Horizontal
+    Position.Y = 572.000000000000000000
+    Size.Width = 800.000000000000000000
+    Size.Height = 8.000000000000000000
+    Size.PlatformDefault = False
+    Visible = False
+  end
+  object TMSMCPCloudImageAI1: TTMSMCPCloudImageAI
+    OnImageGenerated = TMSMCPCloudImageAI1ImageGenerated
+    OnRequestError = TMSMCPCloudImageAI1RequestError
+    Left = 192
+    Top = 112
+  end
+  object SaveDialog1: TSaveDialog
+    DefaultExt = 'png'
+    Filter = 'PNG|*.png'
+    Left = 56
+    Top = 190
+  end
+  object Timer1: TTimer
+    Enabled = False
+    Interval = 25
+    OnTimer = Timer1Timer
+    Left = 192
+    Top = 190
+  end
+end

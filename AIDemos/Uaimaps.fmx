@@ -1,0 +1,144 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'AI Function calling with chart'
+  ClientHeight = 810
+  ClientWidth = 1000
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object TMSFNCMaps1: TTMSFNCMaps
+    Align = Client
+    Size.Width = 1000.000000000000000000
+    Size.Height = 665.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Polylines = <>
+    Polygons = <>
+    Circles = <>
+    Rectangles = <>
+    Markers = <>
+    ElementContainers = <>
+    Labels = <>
+    HeadLinks = <>
+    Options.DefaultLatitude = 40.689247000000000000
+    Options.DefaultLongitude = -74.044501999999990000
+    Options.DefaultZoomLevel = 12.000000000000000000
+    Service = msLeaflet
+  end
+  object Panel1: TPanel
+    Align = Top
+    Size.Width = 1000.000000000000000000
+    Size.Height = 145.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    object Memo1: TMemo
+      Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+      DataDetectorTypes = []
+      Lines.Strings = (
+        'Add markers on my map for all capital cities in europe')
+      Position.X = 136.000000000000000000
+      Position.Y = 7.000000000000000000
+      Size.Width = 393.000000000000000000
+      Size.Height = 121.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Viewport.Width = 389.000000000000000000
+      Viewport.Height = 117.000000000000000000
+    end
+    object Button1: TButton
+      Position.X = 8.000000000000000000
+      Position.Y = 106.000000000000000000
+      Size.Width = 121.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Execute'
+      OnClick = Button1Click
+    end
+    object Memo2: TMemo
+      Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+      DataDetectorTypes = []
+      Position.X = 544.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 449.000000000000000000
+      Size.Height = 121.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Viewport.Width = 445.000000000000000000
+      Viewport.Height = 117.000000000000000000
+    end
+    object ComboBox1: TComboBox
+      Position.X = 8.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 121.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+      OnChange = ComboBox1Change
+    end
+    object AniIndicator1: TAniIndicator
+      Position.X = 44.000000000000000000
+      Position.Y = 46.000000000000000000
+    end
+  end
+  object TMSMCPCloudAI1: TTMSMCPCloudAI
+    Service = aiOpenAI
+    Settings.GeminiModel = 'gemini-2.5-flash'
+    Settings.OpenAIModel = 'gpt-5.4-mini-2026-03-17'
+    Settings.OpenAISoundModel = 'gpt-4o-mini-tts'
+    Settings.OpenAITranscribeModel = 'whisper-1'
+    Settings.GrokModel = 'grok-4-1-fast-reasoning'
+    Settings.ClaudeModel = 'claude-sonnet-4-6'
+    Settings.OllamaModel = 'llama3.2:latest'
+    Settings.DeepSeekModel = 'deepseek-chat'
+    Settings.PerplexityModel = 'sonar-pro'
+    Settings.OllamaHost = 'localhost'
+    Settings.OllamaPath = '/api/chat'
+    Settings.LlamaCppHost = 'localhost'
+    Settings.LlamaCppPath = '/v1/chat/completions'
+    Settings.MistralModel = 'mistral-large-latest'
+    Settings.MistralTranscribeModel = 'voxtral-mini-2507'
+    Tools = <
+      item
+        Name = 'clearmarkers'
+        Description = 'clear the markers on the map'
+        Parameters = <>
+        OnExecute = TMSMCPCloudAI1Tools0Execute
+      end
+      item
+        Name = 'addmarker'
+        Description = 
+          'add a marker on the map at a longitude, latitude coordinate with' +
+          ' a title'
+        Parameters = <
+          item
+            ArrayProperties = <>
+            Name = 'lon'
+            Type = ptNumber
+            Description = 'the coordinate longitude'
+            Properties = <>
+          end
+          item
+            ArrayProperties = <>
+            Name = 'lat'
+            Type = ptNumber
+            Description = 'the coordinate latitude'
+            Properties = <>
+          end
+          item
+            ArrayProperties = <>
+            Name = 'title'
+            Type = ptString
+            Description = 'the marker title'
+            Properties = <>
+          end>
+        OnExecute = TMSMCPCloudAI1Tools1Execute
+      end>
+    OnExecuted = TMSMCPCloudAI1Executed
+    Left = 48
+    Top = 16
+  end
+end

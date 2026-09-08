@@ -1,0 +1,256 @@
+object FormMain: TFormMain
+  Left = 0
+  Top = 0
+  Caption = 'TMS MCP Client'
+  ClientHeight = 618
+  ClientWidth = 728
+  Position = ScreenCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object lblTitle: TLabel
+    Anchors = [akLeft, akTop, akRight]
+    StyledSettings = [Family, Style, FontColor]
+    Position.X = 8.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 712.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 16.000000000000000000
+    TextSettings.HorzAlign = Center
+    Text = 'TMS MCP Client Demo'
+    TabOrder = 0
+  end
+  object memAsk: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    TextSettings.WordWrap = True
+    Anchors = [akLeft, akRight, akBottom]
+    Position.X = 8.000000000000000000
+    Position.Y = 513.000000000000000000
+    Size.Width = 712.000000000000000000
+    Size.Height = 67.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    OnKeyDown = memAskKeyDown
+    Viewport.Width = 708.000000000000000000
+    Viewport.Height = 63.000000000000000000
+  end
+  object btnAsk: TButton
+    Anchors = [akRight, akBottom]
+    Position.X = 632.000000000000000000
+    Position.Y = 588.000000000000000000
+    Size.Width = 88.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    Text = 'Ask'
+    TextSettings.Trimming = None
+    OnClick = btnAskClick
+  end
+  object cbModel: TComboBox
+    Anchors = [akRight, akBottom]
+    Items.Strings = (
+      'OpenAI'
+      'Gemini'
+      'Claude'
+      'Grok'
+      'Mistral'
+      'DeepSeek'
+      'Ollama')
+    ItemIndex = 0
+    Position.X = 519.000000000000000000
+    Position.Y = 588.000000000000000000
+    Size.Width = 105.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    OnChange = cbModelChange
+  end
+  object chatAI: TTMSFNCChat
+    Anchors = [akLeft, akTop, akRight, akBottom]
+    Position.X = 8.000000000000000000
+    Position.Y = 33.000000000000000000
+    Size.Width = 712.000000000000000000
+    Size.Height = 472.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 4
+    Appearance.Spacing = 10.000000000000000000
+    ChatMessages = <
+      item
+        SelectedFill.Color = xFF1772C6
+        SelectedStroke.Kind = gskNone
+        Fill.Color = claDodgerblue
+        Stroke.Kind = gskNone
+        MessageLocation = cmlRight
+        Title = 'Me'
+        CategoryID = -1
+        TitleVerticalTextAlign = gtaCenter
+        TitleColor = claWhite
+        SelectedTitleColor = claWhite
+        Text = 'Hi Tom! Are you free tomorrow?'
+        VerticalTextAlign = gtaCenter
+        TextColor = claWhite
+        SelectedTextColor = claWhite
+      end
+      item
+        SelectedFill.Color = xFFA0A0A0
+        SelectedStroke.Kind = gskNone
+        Fill.Color = claLightgray
+        Stroke.Kind = gskNone
+        Title = 'Tom'
+        CategoryID = -1
+        TitleVerticalTextAlign = gtaCenter
+        Text = 'Hi George! Unfortunately, no.'
+        VerticalTextAlign = gtaCenter
+      end
+      item
+        SelectedFill.Color = xFFA0A0A0
+        SelectedStroke.Kind = gskNone
+        Fill.Color = claLightgray
+        Stroke.Kind = gskNone
+        Title = 'Tom'
+        CategoryID = -1
+        TitleVerticalTextAlign = gtaCenter
+        Text = 'I have an exam tomorrow afternoon.'
+        VerticalTextAlign = gtaCenter
+      end
+      item
+        SelectedFill.Color = xFF1772C6
+        SelectedStroke.Kind = gskNone
+        Fill.Color = claDodgerblue
+        Stroke.Kind = gskNone
+        MessageLocation = cmlRight
+        Title = 'Me'
+        CategoryID = -1
+        TitleVerticalTextAlign = gtaCenter
+        TitleColor = claWhite
+        SelectedTitleColor = claWhite
+        Text = 'Wow, good luck with that!'
+        VerticalTextAlign = gtaCenter
+        TextColor = claWhite
+        SelectedTextColor = claWhite
+      end
+      item
+        SelectedFill.Color = xFFA0A0A0
+        SelectedStroke.Kind = gskNone
+        Fill.Color = claLightgray
+        Stroke.Kind = gskNone
+        Title = 'Tom'
+        CategoryID = -1
+        TitleVerticalTextAlign = gtaCenter
+        Text = 'Thank you! We can meet up on Sunday afternoon if you are free'
+        VerticalTextAlign = gtaCenter
+      end
+      item
+        SelectedFill.Color = xFF1772C6
+        SelectedStroke.Kind = gskNone
+        Fill.Color = claDodgerblue
+        Stroke.Kind = gskNone
+        MessageLocation = cmlRight
+        Title = 'Me'
+        CategoryID = -1
+        TitleVerticalTextAlign = gtaCenter
+        TitleColor = claWhite
+        SelectedTitleColor = claWhite
+        Text = 'Sure, see you on Sunday then!'
+        VerticalTextAlign = gtaCenter
+        TextColor = claWhite
+        SelectedTextColor = claWhite
+      end>
+    Header.Visible = False
+    Header.Text = 'Header'
+    Header.Fill.Color = xFFF9F9F9
+    Header.Font.Size = 14.000000000000000000
+    Header.Font.Color = xFF454545
+    Header.Font.StyleExt = {00070000000000000004000000}
+    Header.Stroke.Kind = gskNone
+    Header.Stroke.Color = xFFB2B2B2
+    Header.Height = 30.000000000000000000
+    Footer.Visible = False
+    Footer.Text = 'Footer'
+    Footer.Fill.Kind = gfkNone
+    Footer.Fill.Color = xFFF9F9F9
+    Footer.Font.Color = xFF454545
+    Footer.Stroke.Color = xFFB2B2B2
+    Footer.Height = 30.000000000000000000
+    CategoryAppearance.Floating = False
+    CategoryAppearance.ShowUncategorized = False
+    Categories = <>
+    Stroke.Color = xFFC8C7CC
+    DefaultRightItem.SelectedFill.Color = xFF1772C6
+    DefaultRightItem.SelectedStroke.Kind = gskNone
+    DefaultRightItem.Fill.Color = claDodgerblue
+    DefaultRightItem.Stroke.Kind = gskNone
+    DefaultRightItem.CategoryID = -1
+    DefaultRightItem.TitleVerticalTextAlign = gtaCenter
+    DefaultRightItem.TitleColor = claWhite
+    DefaultRightItem.SelectedTitleColor = claWhite
+    DefaultRightItem.VerticalTextAlign = gtaCenter
+    DefaultRightItem.TextColor = claWhite
+    DefaultRightItem.SelectedTextColor = claWhite
+    DefaultLeftItem.SelectedFill.Color = xFFA0A0A0
+    DefaultLeftItem.SelectedStroke.Kind = gskNone
+    DefaultLeftItem.Fill.Color = claLightgray
+    DefaultLeftItem.Stroke.Kind = gskNone
+    DefaultLeftItem.CategoryID = -1
+    DefaultLeftItem.TitleVerticalTextAlign = gtaCenter
+    DefaultLeftItem.VerticalTextAlign = gtaCenter
+    Reload.Stroke.Width = 2.000000000000000000
+    ShowMessageField = False
+  end
+  object btnSettings: TButton
+    Anchors = [akLeft, akBottom]
+    Position.X = 8.000000000000000000
+    Position.Y = 588.000000000000000000
+    Size.Width = 81.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 5
+    Text = 'Settings'
+    TextSettings.Trimming = None
+    OnClick = btnSettingsClick
+  end
+  object btnToolsLog: TButton
+    Anchors = [akLeft, akBottom]
+    Position.X = 97.000000000000000000
+    Position.Y = 588.000000000000000000
+    Size.Width = 81.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 6
+    Text = 'Logs'
+    TextSettings.Trimming = None
+    OnClick = btnToolsLogClick
+  end
+  object pbWait: TTMSFNCWaitingIndicator
+    Anchors = [akRight, akBottom]
+    Position.X = 323.000000000000000000
+    Position.Y = 588.000000000000000000
+    Size.Width = 188.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 7
+    Visible = False
+    Active = False
+    Appearance.IndicatorStroke.Width = 20.000000000000000000
+    Appearance.IndicatorShape = wisProgress
+    Appearance.MoveShape = wmsLine
+    Appearance.OverlayStroke.Width = 20.000000000000000000
+    AnimationSpeed = 2.000000000000000000
+  end
+  object lblWarn: TLabel
+    StyledSettings = [Family, Size, Style]
+    Position.X = 185.000000000000000000
+    Position.Y = 588.000000000000000000
+    Size.Width = 326.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.FontColor = claRed
+    Text = 'Please fill in the API key via Settings > API Keys'
+    Visible = False
+    TabOrder = 9
+  end
+end
