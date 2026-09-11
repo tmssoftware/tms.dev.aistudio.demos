@@ -3,10 +3,10 @@
         <ProjectGuid>{1528EBA5-CE7C-4422-829A-80CF6275BAC1}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="OAuth Authorization Server\OAuthAuthorizationServerService.dproj">
+        <Projects Include="OAuth Authorization\OAuthAuthorizationServerService.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="OAuth Resource Server\OAuthResourceServerService.dproj">
+        <Projects Include="OAuth Resource\OAuthResourceServerService.dproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -18,22 +18,22 @@
         </BorlandProject>
     </ProjectExtensions>
     <Target Name="OAuthAuthorizationServerService">
-        <MSBuild Projects="OAuth Authorization Server\OAuthAuthorizationServerService.dproj"/>
+        <MSBuild Projects="OAuth Authorization\OAuthAuthorizationServerService.dproj"/>
     </Target>
     <Target Name="OAuthAuthorizationServerService:Clean">
-        <MSBuild Projects="OAuth Authorization Server\OAuthAuthorizationServerService.dproj" Targets="Clean"/>
+        <MSBuild Projects="OAuth Authorization\OAuthAuthorizationServerService.dproj" Targets="Clean"/>
     </Target>
     <Target Name="OAuthAuthorizationServerService:Make">
-        <MSBuild Projects="OAuth Authorization Server\OAuthAuthorizationServerService.dproj" Targets="Make"/>
+        <MSBuild Projects="OAuth Authorization\OAuthAuthorizationServerService.dproj" Targets="Make"/>
     </Target>
     <Target Name="OAuthResourceServerService">
-        <MSBuild Projects="OAuth Resource Server\OAuthResourceServerService.dproj"/>
+        <MSBuild Projects="OAuth Resource\OAuthResourceServerService.dproj"/>
     </Target>
     <Target Name="OAuthResourceServerService:Clean">
-        <MSBuild Projects="OAuth Resource Server\OAuthResourceServerService.dproj" Targets="Clean"/>
+        <MSBuild Projects="OAuth Resource\OAuthResourceServerService.dproj" Targets="Clean"/>
     </Target>
     <Target Name="OAuthResourceServerService:Make">
-        <MSBuild Projects="OAuth Resource Server\OAuthResourceServerService.dproj" Targets="Make"/>
+        <MSBuild Projects="OAuth Resource\OAuthResourceServerService.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
         <CallTarget Targets="OAuthAuthorizationServerService;OAuthResourceServerService"/>

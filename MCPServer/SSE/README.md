@@ -1,10 +1,10 @@
-# SSE Server
+# SSE
 
 An MCP server, built with `TMS.MCP.Server`, exposing the same `get_weather` tool as [Weather API](../Weather%20API/README.md) but over the Server-Sent Events (SSE) transport, including optional TLS.
 
 ## Overview
 
-The server geocodes a city name via OpenStreetMap and fetches current conditions from Open-Meteo through a single `get_weather` tool, with verbose console logging of each step. It's intended as a companion to the plain Weather API demo for comparing the SSE and Streamable HTTP transports side by side (see [Streamable HTTP Server](../Streamable%20HTTP%20Server/README.md)).
+The server geocodes a city name via OpenStreetMap and fetches current conditions from Open-Meteo through a single `get_weather` tool, with verbose console logging of each step. It's intended as a companion to the plain Weather API demo for comparing the SSE and Streamable HTTP transports side by side (see [Streamable HTTP](../Streamable%20HTTP/README.md)).
 
 ## Requirements
 

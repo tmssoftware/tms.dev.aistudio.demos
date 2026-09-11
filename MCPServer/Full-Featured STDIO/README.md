@@ -1,6 +1,6 @@
-# Full-Featured STDIO Server
+# Full-Featured STDIO
 
-The most complete STDIO example in this demo suite, built with `TMS.MCP.Server`. Where [Simple STDIO Server](../Simple%20STDIO%20Server/README.md) only covers tools, this one demonstrates Tools, Resources, Prompts and Sampling together over the same STDIO transport.
+The most complete STDIO example in this demo suite, built with `TMS.MCP.Server`. Where [Simple STDIO](../Simple%20STDIO/README.md) only covers tools, this one demonstrates Tools, Resources, Prompts and Sampling together over the same STDIO transport.
 
 ## Overview
 

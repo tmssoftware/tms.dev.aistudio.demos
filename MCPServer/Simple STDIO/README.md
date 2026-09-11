@@ -1,4 +1,4 @@
-# Simple STDIO Server
+# Simple STDIO
 
 The smallest possible `TMS.MCP.Server` example: a handful of tools over the STDIO transport, shown in both supported registration styles.
 

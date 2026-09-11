@@ -1,6 +1,6 @@
-# OAuth Authorization Server
+# OAuth Authorization
 
-A minimal but spec-faithful OAuth 2.1 Authorization Server, packaged as a Windows Service, built to let the [OAuth Resource Server](../OAuth%20Resource%20Server/README.md) (or any real MCP client — Claude Desktop, MCP Inspector) exercise the full MCP Authorization loop end to end: discovery → dynamic client registration → PKCE authorize + fake login/consent → token exchange → the resource server calling back here to introspect the token.
+A minimal but spec-faithful OAuth 2.1 Authorization Server, packaged as a Windows Service, built to let the [OAuth Resource](../OAuth%20Resource/README.md) demo (or any real MCP client — Claude Desktop, MCP Inspector) exercise the full MCP Authorization loop end to end: discovery → dynamic client registration → PKCE authorize + fake login/consent → token exchange → the resource server calling back here to introspect the token.
 
 This is a **test tool, not a production identity provider**: there is no real credential check (the "login" page just asks you to approve as a fixed demo user), all state is in-memory only, and only public clients (PKCE, no client secret) are supported — which matches what MCP clients use.
 
@@ -61,4 +61,4 @@ net stop "TMS MCP OAuth Authorization Server"
 OAuthAuthorizationServerService.exe /uninstall
 ```
 
-Run this service before starting the [OAuth Resource Server](../OAuth%20Resource%20Server/README.md), which points its `AuthorizationServers` property at this server's issuer URL and calls `/introspect` to validate bearer tokens.
+Run this service before starting the [OAuth Resource](../OAuth%20Resource/README.md) server, which points its `AuthorizationServers` property at this server's issuer URL and calls `/introspect` to validate bearer tokens.

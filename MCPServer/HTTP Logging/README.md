@@ -1,4 +1,4 @@
-# HTTP Logging Server
+# HTTP Logging
 
 An MCP server, built with `TMS.MCP.Server` over the Streamable HTTP transport, that logs every request it handles to a local SQLite database. Useful as a starting point for auditing, analytics, or debugging MCP traffic.
 

@@ -1,10 +1,10 @@
-# Streamable HTTP Server
+# Streamable HTTP
 
 An MCP server, built with `TMS.MCP.Server`, exposing the same `get_weather` tool as [Weather API](../Weather%20API/README.md) but over the Streamable HTTP transport, including optional TLS.
 
 ## Overview
 
-The server geocodes a city name via OpenStreetMap and fetches current conditions from Open-Meteo through a single `get_weather` tool, with verbose console logging of each step. It's intended as a companion to the plain Weather API demo for comparing the Streamable HTTP and SSE transports side by side (see [SSE Server](../SSE%20Server/README.md)).
+The server geocodes a city name via OpenStreetMap and fetches current conditions from Open-Meteo through a single `get_weather` tool, with verbose console logging of each step. It's intended as a companion to the plain Weather API demo for comparing the Streamable HTTP and SSE transports side by side (see [SSE](../SSE/README.md)).
 
 ## Requirements
 

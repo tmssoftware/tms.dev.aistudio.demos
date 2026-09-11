@@ -9,28 +9,28 @@
         <Projects Include="Weather API\WeatherApiSTDIODemo.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="Database Server\DatabaseDemo.dproj">
+        <Projects Include="Database\DatabaseDemo.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="HTTP Logging Server\StreamableLoggerDemo.dproj">
+        <Projects Include="HTTP Logging\StreamableLoggerDemo.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="Simple STDIO Server\SimpleSTDIOServer.dproj">
+        <Projects Include="Simple STDIO\SimpleSTDIOServer.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="SSE Server\SSEServerDemo.dproj">
+        <Projects Include="SSE\SSEServerDemo.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="Streamable HTTP Server\StreamableHttpServerDemo.dproj">
+        <Projects Include="Streamable HTTP\StreamableHttpServerDemo.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="Full-Featured STDIO Server\TMSMCPSTDIODemo.dproj">
+        <Projects Include="Full-Featured STDIO\TMSMCPSTDIODemo.dproj">
             <Dependencies/>
         </Projects>
         <Projects Include="Attributes\AttributesDemo.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="StellarDS MCP Server\StellarDSDemo.dproj">
+        <Projects Include="StellarDS\StellarDSDemo.dproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -60,58 +60,58 @@
         <MSBuild Projects="Weather API\WeatherApiSTDIODemo.dproj" Targets="Make"/>
     </Target>
     <Target Name="DatabaseDemo">
-        <MSBuild Projects="Database Server\DatabaseDemo.dproj"/>
+        <MSBuild Projects="Database\DatabaseDemo.dproj"/>
     </Target>
     <Target Name="DatabaseDemo:Clean">
-        <MSBuild Projects="Database Server\DatabaseDemo.dproj" Targets="Clean"/>
+        <MSBuild Projects="Database\DatabaseDemo.dproj" Targets="Clean"/>
     </Target>
     <Target Name="DatabaseDemo:Make">
-        <MSBuild Projects="Database Server\DatabaseDemo.dproj" Targets="Make"/>
+        <MSBuild Projects="Database\DatabaseDemo.dproj" Targets="Make"/>
     </Target>
     <Target Name="StreamableLoggerDemo">
-        <MSBuild Projects="HTTP Logging Server\StreamableLoggerDemo.dproj"/>
+        <MSBuild Projects="HTTP Logging\StreamableLoggerDemo.dproj"/>
     </Target>
     <Target Name="StreamableLoggerDemo:Clean">
-        <MSBuild Projects="HTTP Logging Server\StreamableLoggerDemo.dproj" Targets="Clean"/>
+        <MSBuild Projects="HTTP Logging\StreamableLoggerDemo.dproj" Targets="Clean"/>
     </Target>
     <Target Name="StreamableLoggerDemo:Make">
-        <MSBuild Projects="HTTP Logging Server\StreamableLoggerDemo.dproj" Targets="Make"/>
+        <MSBuild Projects="HTTP Logging\StreamableLoggerDemo.dproj" Targets="Make"/>
     </Target>
     <Target Name="SimpleSTDIOServer">
-        <MSBuild Projects="Simple STDIO Server\SimpleSTDIOServer.dproj"/>
+        <MSBuild Projects="Simple STDIO\SimpleSTDIOServer.dproj"/>
     </Target>
     <Target Name="SimpleSTDIOServer:Clean">
-        <MSBuild Projects="Simple STDIO Server\SimpleSTDIOServer.dproj" Targets="Clean"/>
+        <MSBuild Projects="Simple STDIO\SimpleSTDIOServer.dproj" Targets="Clean"/>
     </Target>
     <Target Name="SimpleSTDIOServer:Make">
-        <MSBuild Projects="Simple STDIO Server\SimpleSTDIOServer.dproj" Targets="Make"/>
+        <MSBuild Projects="Simple STDIO\SimpleSTDIOServer.dproj" Targets="Make"/>
     </Target>
     <Target Name="SSEServerDemo">
-        <MSBuild Projects="SSE Server\SSEServerDemo.dproj"/>
+        <MSBuild Projects="SSE\SSEServerDemo.dproj"/>
     </Target>
     <Target Name="SSEServerDemo:Clean">
-        <MSBuild Projects="SSE Server\SSEServerDemo.dproj" Targets="Clean"/>
+        <MSBuild Projects="SSE\SSEServerDemo.dproj" Targets="Clean"/>
     </Target>
     <Target Name="SSEServerDemo:Make">
-        <MSBuild Projects="SSE Server\SSEServerDemo.dproj" Targets="Make"/>
+        <MSBuild Projects="SSE\SSEServerDemo.dproj" Targets="Make"/>
     </Target>
     <Target Name="StreamableHttpServerDemo">
-        <MSBuild Projects="Streamable HTTP Server\StreamableHttpServerDemo.dproj"/>
+        <MSBuild Projects="Streamable HTTP\StreamableHttpServerDemo.dproj"/>
     </Target>
     <Target Name="StreamableHttpServerDemo:Clean">
-        <MSBuild Projects="Streamable HTTP Server\StreamableHttpServerDemo.dproj" Targets="Clean"/>
+        <MSBuild Projects="Streamable HTTP\StreamableHttpServerDemo.dproj" Targets="Clean"/>
     </Target>
     <Target Name="StreamableHttpServerDemo:Make">
-        <MSBuild Projects="Streamable HTTP Server\StreamableHttpServerDemo.dproj" Targets="Make"/>
+        <MSBuild Projects="Streamable HTTP\StreamableHttpServerDemo.dproj" Targets="Make"/>
     </Target>
     <Target Name="TMSMCPSTDIODemo">
-        <MSBuild Projects="Full-Featured STDIO Server\TMSMCPSTDIODemo.dproj"/>
+        <MSBuild Projects="Full-Featured STDIO\TMSMCPSTDIODemo.dproj"/>
     </Target>
     <Target Name="TMSMCPSTDIODemo:Clean">
-        <MSBuild Projects="Full-Featured STDIO Server\TMSMCPSTDIODemo.dproj" Targets="Clean"/>
+        <MSBuild Projects="Full-Featured STDIO\TMSMCPSTDIODemo.dproj" Targets="Clean"/>
     </Target>
     <Target Name="TMSMCPSTDIODemo:Make">
-        <MSBuild Projects="Full-Featured STDIO Server\TMSMCPSTDIODemo.dproj" Targets="Make"/>
+        <MSBuild Projects="Full-Featured STDIO\TMSMCPSTDIODemo.dproj" Targets="Make"/>
     </Target>
     <Target Name="AttributesDemo">
         <MSBuild Projects="Attributes\AttributesDemo.dproj"/>
@@ -123,13 +123,13 @@
         <MSBuild Projects="Attributes\AttributesDemo.dproj" Targets="Make"/>
     </Target>
     <Target Name="StellarDSDemo">
-        <MSBuild Projects="StellarDS MCP Server\StellarDSDemo.dproj"/>
+        <MSBuild Projects="StellarDS\StellarDSDemo.dproj"/>
     </Target>
     <Target Name="StellarDSDemo:Clean">
-        <MSBuild Projects="StellarDS MCP Server\StellarDSDemo.dproj" Targets="Clean"/>
+        <MSBuild Projects="StellarDS\StellarDSDemo.dproj" Targets="Clean"/>
     </Target>
     <Target Name="StellarDSDemo:Make">
-        <MSBuild Projects="StellarDS MCP Server\StellarDSDemo.dproj" Targets="Make"/>
+        <MSBuild Projects="StellarDS\StellarDSDemo.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
         <CallTarget Targets="WeatherApiSSEDemo;WeatherApiSTDIODemo;DatabaseDemo;StreamableLoggerDemo;SimpleSTDIOServer;SSEServerDemo;StreamableHttpServerDemo;TMSMCPSTDIODemo;AttributesDemo;StellarDSDemo"/>

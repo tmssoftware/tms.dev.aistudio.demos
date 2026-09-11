@@ -10,12 +10,12 @@
   HOW TO CONNECT
   --------------
   1. Build this project in Release or Debug configuration (Win32).
-     Output: Demos\MCPServer\Full-Featured STDIO Server\Win32\Debug\TMSMCPSTDIODemo.exe
+     Output: Demos\MCPServer\Full-Featured STDIO\Win32\Debug\TMSMCPSTDIODemo.exe
 
   2. Claude Desktop  (claude_desktop_config.json)
      Add to the "mcpServers" section:
        "tms-stdio-demo": }{
-         "command": "C:\\...\\Demos\\MCPServer\\Full-Featured STDIO Server\\Win32\\Debug\\TMSMCPSTDIODemo.exe"
+         "command": "C:\\...\\Demos\\MCPServer\\Full-Featured STDIO\\Win32\\Debug\\TMSMCPSTDIODemo.exe"
        } {
      Restart Claude Desktop and the server will appear in the tools/resources list.
 

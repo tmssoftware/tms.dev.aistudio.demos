@@ -1,4 +1,4 @@
-# StellarDS MCP Server
+# StellarDS
 
 An attribute-based MCP server (see [Attributes](../Attributes/README.md) for the pattern) that wraps the `TTMSMCPStellarDS` component to expose TMS StellarDS as a set of MCP tools over STDIO, so an AI assistant can query and manage a StellarDS backend directly.
 

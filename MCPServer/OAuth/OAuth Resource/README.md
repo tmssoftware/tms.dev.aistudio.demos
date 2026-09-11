@@ -1,6 +1,6 @@
-# OAuth Resource Server
+# OAuth Resource
 
-An MCP server, built with `TMS.MCP.Server` over the Streamable HTTP transport and packaged as a Windows Service, that requires a valid OAuth bearer token on every request (`RequireBearerAuthentication`), per the MCP Authorization specification. It validates tokens by calling the [OAuth Authorization Server](../OAuth%20Authorization%20Server/README.md)'s RFC 7662 introspection endpoint, so the two must be run together — this is the one demo in the OAuth pair that also uses `TMS.MCP.Server` directly.
+An MCP server, built with `TMS.MCP.Server` over the Streamable HTTP transport and packaged as a Windows Service, that requires a valid OAuth bearer token on every request (`RequireBearerAuthentication`), per the MCP Authorization specification. It validates tokens by calling the [OAuth Authorization](../OAuth%20Authorization/README.md) server's RFC 7662 introspection endpoint, so the two must be run together — this is the one demo in the OAuth pair that also uses `TMS.MCP.Server` directly.
 
 ## Overview
 
@@ -15,7 +15,7 @@ Only then is the request allowed through, with the token's `scope` and `sub` (su
 
 - Delphi 11.0 or later
 - TMS AI Studio
-- A running [OAuth Authorization Server](../OAuth%20Authorization%20Server/README.md) instance
+- A running [OAuth Authorization](../OAuth%20Authorization/README.md) server instance
 
 ## Building
 
@@ -41,11 +41,11 @@ AuthorizationServerIssuer=http://localhost:9000
 LogFile=
 ```
 
-`AuthorizationServerIssuer` must point at a running [OAuth Authorization Server](../OAuth%20Authorization%20Server/README.md). If `LogFile` is left blank, it defaults to the executable's own name with a `.log` extension.
+`AuthorizationServerIssuer` must point at a running [OAuth Authorization](../OAuth%20Authorization/README.md) server. If `LogFile` is left blank, it defaults to the executable's own name with a `.log` extension.
 
 ## Installing and running
 
-Start the [OAuth Authorization Server](../OAuth%20Authorization%20Server/README.md) first, then from an elevated command prompt:
+Start the [OAuth Authorization](../OAuth%20Authorization/README.md) server first, then from an elevated command prompt:
 
 ```
 OAuthResourceServerService.exe /install

@@ -1,4 +1,4 @@
-# Database Server
+# Database
 
 An MCP server, built with `TMS.MCP.Server`, that connects to a database (SQLite, MySQL, MS SQL, or PostgreSQL) and exposes it through MCP tools and resources over STDIO transport. This allows AI assistants to query databases and work with the data directly.
 
