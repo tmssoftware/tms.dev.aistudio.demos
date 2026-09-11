@@ -3,19 +3,19 @@
 {$APPTYPE CONSOLE}
 
 {
-  TMS MCP STDIO Full Demo
-  =======================
+  TMS MCP Full-Featured STDIO Server
+  ===================================
   Demonstrates Tools, Resources, Prompts and Sampling over STDIO transport.
 
   HOW TO CONNECT
   --------------
   1. Build this project in Release or Debug configuration (Win32).
-     Output: Demos\STDIOFullDemo\Win32\Debug\TMSMCPSTDIODemo.exe
+     Output: Demos\MCPServer\Full-Featured STDIO Server\Win32\Debug\TMSMCPSTDIODemo.exe
 
   2. Claude Desktop  (claude_desktop_config.json)
      Add to the "mcpServers" section:
        "tms-stdio-demo": }{
-         "command": "C:\\...\\Demos\\STDIOFullDemo\\Win32\\Debug\\TMSMCPSTDIODemo.exe"
+         "command": "C:\\...\\Demos\\MCPServer\\Full-Featured STDIO Server\\Win32\\Debug\\TMSMCPSTDIODemo.exe"
        } {
      Restart Claude Desktop and the server will appear in the tools/resources list.
 

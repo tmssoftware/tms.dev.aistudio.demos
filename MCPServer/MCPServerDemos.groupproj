@@ -1,0 +1,144 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{B63A333D-4EF6-4941-A113-3C75B287B909}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Weather API\WeatherApiSSEDemo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Weather API\WeatherApiSTDIODemo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Database Server\DatabaseDemo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="HTTP Logging Server\StreamableLoggerDemo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Simple STDIO Server\SimpleSTDIOServer.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="SSE Server\SSEServerDemo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Streamable HTTP Server\StreamableHttpServerDemo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Full-Featured STDIO Server\TMSMCPSTDIODemo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Attributes\AttributesDemo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="StellarDS MCP Server\StellarDSDemo.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="WeatherApiSSEDemo">
+        <MSBuild Projects="Weather API\WeatherApiSSEDemo.dproj"/>
+    </Target>
+    <Target Name="WeatherApiSSEDemo:Clean">
+        <MSBuild Projects="Weather API\WeatherApiSSEDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="WeatherApiSSEDemo:Make">
+        <MSBuild Projects="Weather API\WeatherApiSSEDemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="WeatherApiSTDIODemo">
+        <MSBuild Projects="Weather API\WeatherApiSTDIODemo.dproj"/>
+    </Target>
+    <Target Name="WeatherApiSTDIODemo:Clean">
+        <MSBuild Projects="Weather API\WeatherApiSTDIODemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="WeatherApiSTDIODemo:Make">
+        <MSBuild Projects="Weather API\WeatherApiSTDIODemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="DatabaseDemo">
+        <MSBuild Projects="Database Server\DatabaseDemo.dproj"/>
+    </Target>
+    <Target Name="DatabaseDemo:Clean">
+        <MSBuild Projects="Database Server\DatabaseDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DatabaseDemo:Make">
+        <MSBuild Projects="Database Server\DatabaseDemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="StreamableLoggerDemo">
+        <MSBuild Projects="HTTP Logging Server\StreamableLoggerDemo.dproj"/>
+    </Target>
+    <Target Name="StreamableLoggerDemo:Clean">
+        <MSBuild Projects="HTTP Logging Server\StreamableLoggerDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="StreamableLoggerDemo:Make">
+        <MSBuild Projects="HTTP Logging Server\StreamableLoggerDemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="SimpleSTDIOServer">
+        <MSBuild Projects="Simple STDIO Server\SimpleSTDIOServer.dproj"/>
+    </Target>
+    <Target Name="SimpleSTDIOServer:Clean">
+        <MSBuild Projects="Simple STDIO Server\SimpleSTDIOServer.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="SimpleSTDIOServer:Make">
+        <MSBuild Projects="Simple STDIO Server\SimpleSTDIOServer.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="SSEServerDemo">
+        <MSBuild Projects="SSE Server\SSEServerDemo.dproj"/>
+    </Target>
+    <Target Name="SSEServerDemo:Clean">
+        <MSBuild Projects="SSE Server\SSEServerDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="SSEServerDemo:Make">
+        <MSBuild Projects="SSE Server\SSEServerDemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="StreamableHttpServerDemo">
+        <MSBuild Projects="Streamable HTTP Server\StreamableHttpServerDemo.dproj"/>
+    </Target>
+    <Target Name="StreamableHttpServerDemo:Clean">
+        <MSBuild Projects="Streamable HTTP Server\StreamableHttpServerDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="StreamableHttpServerDemo:Make">
+        <MSBuild Projects="Streamable HTTP Server\StreamableHttpServerDemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TMSMCPSTDIODemo">
+        <MSBuild Projects="Full-Featured STDIO Server\TMSMCPSTDIODemo.dproj"/>
+    </Target>
+    <Target Name="TMSMCPSTDIODemo:Clean">
+        <MSBuild Projects="Full-Featured STDIO Server\TMSMCPSTDIODemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TMSMCPSTDIODemo:Make">
+        <MSBuild Projects="Full-Featured STDIO Server\TMSMCPSTDIODemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="AttributesDemo">
+        <MSBuild Projects="Attributes\AttributesDemo.dproj"/>
+    </Target>
+    <Target Name="AttributesDemo:Clean">
+        <MSBuild Projects="Attributes\AttributesDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="AttributesDemo:Make">
+        <MSBuild Projects="Attributes\AttributesDemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="StellarDSDemo">
+        <MSBuild Projects="StellarDS MCP Server\StellarDSDemo.dproj"/>
+    </Target>
+    <Target Name="StellarDSDemo:Clean">
+        <MSBuild Projects="StellarDS MCP Server\StellarDSDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="StellarDSDemo:Make">
+        <MSBuild Projects="StellarDS MCP Server\StellarDSDemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="WeatherApiSSEDemo;WeatherApiSTDIODemo;DatabaseDemo;StreamableLoggerDemo;SimpleSTDIOServer;SSEServerDemo;StreamableHttpServerDemo;TMSMCPSTDIODemo;AttributesDemo;StellarDSDemo"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="WeatherApiSSEDemo:Clean;WeatherApiSTDIODemo:Clean;DatabaseDemo:Clean;StreamableLoggerDemo:Clean;SimpleSTDIOServer:Clean;SSEServerDemo:Clean;StreamableHttpServerDemo:Clean;TMSMCPSTDIODemo:Clean;AttributesDemo:Clean;StellarDSDemo:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="WeatherApiSSEDemo:Make;WeatherApiSTDIODemo:Make;DatabaseDemo:Make;StreamableLoggerDemo:Make;SimpleSTDIOServer:Make;SSEServerDemo:Make;StreamableHttpServerDemo:Make;TMSMCPSTDIODemo:Make;AttributesDemo:Make;StellarDSDemo:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

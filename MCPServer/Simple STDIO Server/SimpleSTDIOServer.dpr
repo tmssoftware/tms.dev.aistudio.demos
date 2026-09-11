@@ -57,6 +57,7 @@ uses
   System.SysUtils,
   System.Classes,
   System.Rtti,
+  System.Types,
   TMS.MCP.Server,
   TMS.MCP.Tools,
   TMS.MCP.Helpers,         // TTMSMCPMethod, TTMSMCPBase, etc.

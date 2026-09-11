@@ -1,10 +1,10 @@
-# TMS MCP Database Server Demo
+# Database Server
 
-This README explains how to set up and use the TMS MCP Database Server Demo with a client using STDIO transport.
+An MCP server, built with `TMS.MCP.Server`, that connects to a database (SQLite, MySQL, MS SQL, or PostgreSQL) and exposes it through MCP tools and resources over STDIO transport. This allows AI assistants to query databases and work with the data directly.
 
 ## Overview
 
-The Database Server Demo is a Model Context Protocol (MCP) server implementation that connects to a database (SQLite, MySQL, MS SQL, or PostgreSQL) and exposes it through MCP tools. This allows AI assistants to query databases and work with the data directly.
+The server accepts a database connection as command-line parameters, then exposes read-only query tools (`query`, `get_schema`, `get_tables`, `get_table_data`) and the database structure as MCP resources.
 
 ## Requirements
 

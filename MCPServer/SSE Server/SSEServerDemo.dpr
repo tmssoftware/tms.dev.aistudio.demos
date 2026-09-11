@@ -1,4 +1,4 @@
-﻿program MCPDemo;
+﻿program SSEServerDemo;
 
 {$APPTYPE CONSOLE}
 

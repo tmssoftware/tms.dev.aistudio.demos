@@ -1,4 +1,4 @@
-program MCPDemo;
+program StreamableHttpServerDemo;
 
 {$APPTYPE CONSOLE}
 

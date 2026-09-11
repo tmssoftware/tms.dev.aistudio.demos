@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{1528EBA5-CE7C-4422-829A-80CF6275BAC1}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="OAuth Authorization Server\OAuthAuthorizationServerService.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="OAuth Resource Server\OAuthResourceServerService.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="OAuthAuthorizationServerService">
+        <MSBuild Projects="OAuth Authorization Server\OAuthAuthorizationServerService.dproj"/>
+    </Target>
+    <Target Name="OAuthAuthorizationServerService:Clean">
+        <MSBuild Projects="OAuth Authorization Server\OAuthAuthorizationServerService.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="OAuthAuthorizationServerService:Make">
+        <MSBuild Projects="OAuth Authorization Server\OAuthAuthorizationServerService.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="OAuthResourceServerService">
+        <MSBuild Projects="OAuth Resource Server\OAuthResourceServerService.dproj"/>
+    </Target>
+    <Target Name="OAuthResourceServerService:Clean">
+        <MSBuild Projects="OAuth Resource Server\OAuthResourceServerService.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="OAuthResourceServerService:Make">
+        <MSBuild Projects="OAuth Resource Server\OAuthResourceServerService.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="OAuthAuthorizationServerService;OAuthResourceServerService"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="OAuthAuthorizationServerService:Clean;OAuthResourceServerService:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="OAuthAuthorizationServerService:Make;OAuthResourceServerService:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

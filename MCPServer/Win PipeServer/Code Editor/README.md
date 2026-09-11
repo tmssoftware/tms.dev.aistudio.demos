@@ -1,10 +1,10 @@
-# TMS MCP Code Editor Demo
+# Code Editor
 
-This README explains how to set up and use the TMS MCP Code Editor Demo with a client using the STDIO Bridge to connect to the Named Pipe transport.
+An MCP server, built with `TMS.MCP.Server`, that allows AI assistants to read and edit code in a Delphi editor component. This demo uses the Named Pipe transport rather than direct STDIO, so it requires the sibling [MCP_STDIO_Bridge](../MCP_STDIO_Bridge/README.md) application to connect standard MCP clients (Claude Desktop, mcp-inspector, etc.), which only speak STDIO.
 
 ## Overview
 
-The Code Editor Demo is a Model Context Protocol (MCP) server implementation that allows AI assistants to read and edit code in a Delphi editor component. This demo uses Named Pipe transport rather than direct STDIO, so it requires a bridge application to connect standard MCP clients.
+`SyntaxBridgeDemo` hosts an editor UI and an MCP server over a named pipe. `MCP_STDIO_Bridge` is a small console app that pipes STDIN/STDOUT to/from that named pipe, so any STDIO-only MCP client can drive the editor as if it were talking to a normal STDIO server.
 
 ## Requirements
 

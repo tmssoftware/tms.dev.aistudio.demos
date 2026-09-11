@@ -1,10 +1,10 @@
-# TMS MCP Weather API Demo
+# Weather API
 
-This README explains how to set up and use the TMS MCP Weather API Demo with a client using STDIO/SSE transport.
+A minimal MCP server exposing a single `get_weather` tool, built with `TMS.MCP.Server`. Two variants of the same tool are included, one per transport: STDIO (`WeatherApiSTDIODemo`) and SSE (`WeatherApiSSEDemo`). Start here if you're new to the TMS MCP SDK.
 
 ## Overview
 
-The WeatherAPI demo is a simple Model Context Protocol (MCP) server implementation that exposes a weather tool to retrieve current weather information for specified cities. The server uses the OpenStreetMap API to geocode city names into coordinates and the Open-Meteo API to fetch current weather data.
+The server exposes a weather tool to retrieve current weather information for specified cities. It uses the OpenStreetMap API to geocode city names into coordinates and the Open-Meteo API to fetch current weather data.
 
 ## Requirements
 
