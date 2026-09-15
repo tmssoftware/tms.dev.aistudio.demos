@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{3CDBA413-CEBD-47C3-8ED8-B7ED788290B5}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Code Editor\SyntaxBridgeDemo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="MCP_STDIO_Bridge\MCP_STDIO_Bridge.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="SyntaxBridgeDemo">
+        <MSBuild Projects="Code Editor\SyntaxBridgeDemo.dproj"/>
+    </Target>
+    <Target Name="SyntaxBridgeDemo:Clean">
+        <MSBuild Projects="Code Editor\SyntaxBridgeDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="SyntaxBridgeDemo:Make">
+        <MSBuild Projects="Code Editor\SyntaxBridgeDemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="MCP_STDIO_Bridge">
+        <MSBuild Projects="MCP STDIO Bridge\MCP_STDIO_Bridge.dproj"/>
+    </Target>
+    <Target Name="MCP_STDIO_Bridge:Clean">
+        <MSBuild Projects="MCP STDIO Bridge\MCP_STDIO_Bridge.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MCP_STDIO_Bridge:Make">
+        <MSBuild Projects="MCP STDIO Bridge\MCP_STDIO_Bridge.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="SyntaxBridgeDemo;MCP_STDIO_Bridge"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="SyntaxBridgeDemo:Clean;MCP_STDIO_Bridge:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="SyntaxBridgeDemo:Make;MCP_STDIO_Bridge:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

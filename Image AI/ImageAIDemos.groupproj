@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{80C879A5-0D89-4010-BE69-249447DC73B4}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Text to Image\TextToImage.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Change Text\ChangeText.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Background Removal\RemoveBackground.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="TextToImage">
+        <MSBuild Projects="Text to Image\TextToImage.dproj"/>
+    </Target>
+    <Target Name="TextToImage:Clean">
+        <MSBuild Projects="Text to Image\TextToImage.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TextToImage:Make">
+        <MSBuild Projects="Text to Image\TextToImage.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ChangeText">
+        <MSBuild Projects="Change Text\ChangeText.dproj"/>
+    </Target>
+    <Target Name="ChangeText:Clean">
+        <MSBuild Projects="Change Text\ChangeText.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ChangeText:Make">
+        <MSBuild Projects="Change Text\ChangeText.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="RemoveBackground">
+        <MSBuild Projects="Background Removal\RemoveBackground.dproj"/>
+    </Target>
+    <Target Name="RemoveBackground:Clean">
+        <MSBuild Projects="Background Removal\RemoveBackground.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="RemoveBackground:Make">
+        <MSBuild Projects="Background Removal\RemoveBackground.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="TextToImage;ChangeText;RemoveBackground"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="TextToImage:Clean;ChangeText:Clean;RemoveBackground:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="TextToImage:Make;ChangeText:Make;RemoveBackground:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

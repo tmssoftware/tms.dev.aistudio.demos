@@ -1,0 +1,180 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{B085D456-D2CC-4EA3-AB4B-1115C1EEA4A9}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="API Keys\AIAPIKeys.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Chart Generation\AIChart.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="File Management\AIFiles.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="File System Tools\AIToolSets.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Image Analysis\AIImages.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Map Interaction\AIMaps.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Model Listing\AIModels.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="OCR\AIOCR.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Simple\AISimple.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Speech Translation\AITTSSTT.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Text Processing\AIText.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Text to SQL\AISQL.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Weather Lookup\AIWeather.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="AIAPIKeys">
+        <MSBuild Projects="API Keys\AIAPIKeys.dproj"/>
+    </Target>
+    <Target Name="AIAPIKeys:Clean">
+        <MSBuild Projects="API Keys\AIAPIKeys.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="AIAPIKeys:Make">
+        <MSBuild Projects="API Keys\AIAPIKeys.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="AIChart">
+        <MSBuild Projects="Chart Generation\AIChart.dproj"/>
+    </Target>
+    <Target Name="AIChart:Clean">
+        <MSBuild Projects="Chart Generation\AIChart.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="AIChart:Make">
+        <MSBuild Projects="Chart Generation\AIChart.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="AIFiles">
+        <MSBuild Projects="File Management\AIFiles.dproj"/>
+    </Target>
+    <Target Name="AIFiles:Clean">
+        <MSBuild Projects="File Management\AIFiles.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="AIFiles:Make">
+        <MSBuild Projects="File Management\AIFiles.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="AIToolSets">
+        <MSBuild Projects="File System Tools\AIToolSets.dproj"/>
+    </Target>
+    <Target Name="AIToolSets:Clean">
+        <MSBuild Projects="File System Tools\AIToolSets.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="AIToolSets:Make">
+        <MSBuild Projects="File System Tools\AIToolSets.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="AIImages">
+        <MSBuild Projects="Image Analysis\AIImages.dproj"/>
+    </Target>
+    <Target Name="AIImages:Clean">
+        <MSBuild Projects="Image Analysis\AIImages.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="AIImages:Make">
+        <MSBuild Projects="Image Analysis\AIImages.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="AIMaps">
+        <MSBuild Projects="Map Interaction\AIMaps.dproj"/>
+    </Target>
+    <Target Name="AIMaps:Clean">
+        <MSBuild Projects="Map Interaction\AIMaps.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="AIMaps:Make">
+        <MSBuild Projects="Map Interaction\AIMaps.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="AIModels">
+        <MSBuild Projects="Model Listing\AIModels.dproj"/>
+    </Target>
+    <Target Name="AIModels:Clean">
+        <MSBuild Projects="Model Listing\AIModels.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="AIModels:Make">
+        <MSBuild Projects="Model Listing\AIModels.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="AIOCR">
+        <MSBuild Projects="OCR\AIOCR.dproj"/>
+    </Target>
+    <Target Name="AIOCR:Clean">
+        <MSBuild Projects="OCR\AIOCR.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="AIOCR:Make">
+        <MSBuild Projects="OCR\AIOCR.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="AISimple">
+        <MSBuild Projects="Simple\AISimple.dproj"/>
+    </Target>
+    <Target Name="AISimple:Clean">
+        <MSBuild Projects="Simple\AISimple.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="AISimple:Make">
+        <MSBuild Projects="Simple\AISimple.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="AITTSSTT">
+        <MSBuild Projects="Speech Translation\AITTSSTT.dproj"/>
+    </Target>
+    <Target Name="AITTSSTT:Clean">
+        <MSBuild Projects="Speech Translation\AITTSSTT.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="AITTSSTT:Make">
+        <MSBuild Projects="Speech Translation\AITTSSTT.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="AIText">
+        <MSBuild Projects="Text Processing\AIText.dproj"/>
+    </Target>
+    <Target Name="AIText:Clean">
+        <MSBuild Projects="Text Processing\AIText.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="AIText:Make">
+        <MSBuild Projects="Text Processing\AIText.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="AISQL">
+        <MSBuild Projects="Text to SQL\AISQL.dproj"/>
+    </Target>
+    <Target Name="AISQL:Clean">
+        <MSBuild Projects="Text to SQL\AISQL.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="AISQL:Make">
+        <MSBuild Projects="Text to SQL\AISQL.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="AIWeather">
+        <MSBuild Projects="Weather Lookup\AIWeather.dproj"/>
+    </Target>
+    <Target Name="AIWeather:Clean">
+        <MSBuild Projects="Weather Lookup\AIWeather.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="AIWeather:Make">
+        <MSBuild Projects="Weather Lookup\AIWeather.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="AIAPIKeys;AIChart;AIFiles;AIToolSets;AIImages;AIMaps;AIModels;AIOCR;AISimple;AITTSSTT;AIText;AISQL;AIWeather"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="AIAPIKeys:Clean;AIChart:Clean;AIFiles:Clean;AIToolSets:Clean;AIImages:Clean;AIMaps:Clean;AIModels:Clean;AIOCR:Clean;AISimple:Clean;AITTSSTT:Clean;AIText:Clean;AISQL:Clean;AIWeather:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="AIAPIKeys:Make;AIChart:Make;AIFiles:Make;AIToolSets:Make;AIImages:Make;AIMaps:Make;AIModels:Make;AIOCR:Make;AISimple:Make;AITTSSTT:Make;AIText:Make;AISQL:Make;AIWeather:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
