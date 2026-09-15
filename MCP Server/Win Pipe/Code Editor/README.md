@@ -8,7 +8,7 @@ An MCP server, built with `TMS.MCP.Server`, that allows AI assistants to read an
 
 ## Requirements
 
-- Delphi 10.0 or later
+- Delphi 11.1 or later
 - TMS FNC UI Pack (for the editor component)
 - TMS MCP SDK
 

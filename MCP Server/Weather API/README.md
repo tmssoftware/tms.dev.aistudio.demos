@@ -8,7 +8,7 @@ The server exposes a weather tool to retrieve current weather information for sp
 
 ## Requirements
 
-- Delphi 11.0 or later
+- Delphi 11.1 or later
 - TMS AI Studio
 
 ## Building the STDIO Server

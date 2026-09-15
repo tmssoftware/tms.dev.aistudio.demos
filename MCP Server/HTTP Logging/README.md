@@ -8,7 +8,7 @@ Every call is recorded in a `mcp_logs` table (method, params, response, success,
 
 ## Requirements
 
-- Delphi 11.0 or later
+- Delphi 11.1 or later
 - TMS AI Studio
 - FireDAC with the SQLite driver
 

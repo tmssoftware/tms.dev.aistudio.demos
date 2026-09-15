@@ -8,7 +8,7 @@ The server geocodes a city name via OpenStreetMap and fetches current conditions
 
 ## Requirements
 
-- Delphi 11.0 or later
+- Delphi 11.1 or later
 - TMS AI Studio
 - OpenSSL libraries on the `PATH` (only required when using `--ssl`)
 

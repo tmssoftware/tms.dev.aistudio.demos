@@ -19,7 +19,7 @@ Endpoints (default port 9000):
 
 ## Requirements
 
-- Delphi 11.0 or later
+- Delphi 11.1 or later
 - TMS AI Studio
 
 ## Building

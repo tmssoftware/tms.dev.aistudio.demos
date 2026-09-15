@@ -10,7 +10,7 @@ Instead of building a `TTMSMCPTool` for every operation, you mark ordinary metho
 
 ## Requirements
 
-- Delphi 11.0 or later
+- Delphi 11.1 or later
 - TMS AI Studio
 
 ## Building

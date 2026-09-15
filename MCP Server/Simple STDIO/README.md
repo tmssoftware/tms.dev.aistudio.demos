@@ -13,7 +13,7 @@ This demo shows two ways to register a tool, producing identical results:
 
 ## Requirements
 
-- Delphi 11.0 or later
+- Delphi 11.1 or later
 - TMS AI Studio
 
 ## Building

@@ -8,7 +8,7 @@ The server accepts a database connection as command-line parameters, then expose
 
 ## Requirements
 
-- Delphi 10.0 or later
+- Delphi 11.1 or later
 - TMS FNC Core Pack
 - TMS MCP SDK
 - Database drivers for your selected database type

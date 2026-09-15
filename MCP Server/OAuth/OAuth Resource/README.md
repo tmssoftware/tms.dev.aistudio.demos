@@ -13,7 +13,7 @@ Only then is the request allowed through, with the token's `scope` and `sub` (su
 
 ## Requirements
 
-- Delphi 11.0 or later
+- Delphi 11.1 or later
 - TMS AI Studio
 - A running [OAuth Authorization](../OAuth%20Authorization/README.md) server instance
 

@@ -8,7 +8,7 @@ The server declares MCP protocol version `2025-11-25` but negotiates down to wha
 
 ## Requirements
 
-- Delphi 11.0 or later
+- Delphi 11.1 or later
 - TMS AI Studio
 
 ## Building

@@ -8,7 +8,7 @@ An attribute-based MCP server (see [Attributes](../Attributes/README.md) for the
 
 ## Requirements
 
-- Delphi 11.0 or later
+- Delphi 11.1 or later
 - TMS AI Studio
 - A TMS StellarDS access token
 
