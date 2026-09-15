@@ -11,7 +11,7 @@ uses
   FMX.Objects, FMX.TMSFNCTypes, FMX.TMSFNCUtils, FMX.TMSFNCGraphics,
   FMX.TMSFNCGraphicsTypes, FMX.TMSFNCCustomControl, FMX.TMSFNCTableView,
   FMX.TMSFNCChat, FMX.TMSFNCWaitingIndicator, ULogs, UMCPClient, TMS.MCP.Client,
-  System.JSON;
+  TMS.MCP.Client.Connection, System.JSON;
 
 type
   TFormMain = class(TForm)
@@ -87,30 +87,34 @@ begin
 end;
 
 procedure TFormMain.LoadServers;
-var
-  I: Integer;
 begin
   if TFile.Exists(ChangeFileExt(ParamStr(0),'-config.json')) then
     DM.MCPClient.Servers.LoadFromJSONFile(ChangeFileExt(ParamStr(0),'-config.json'));
-
-  for I := 0 to DM.MCPClient.Servers.Count - 1 do
-    DM.MCPClient.Servers[I].Start;
 end;
 
 procedure TFormMain.LoadSettings;
+
+  function HasModelSettings(AFile: string): Boolean;
+  var
+    ini: TiniFile;
+  begin
+    Result := False;
+    ini := TIniFile.Create(AFile);
+    try
+      if ini.ValueExists('Settings', 'OpenAIModel') then
+        Result := True;
+    finally
+      ini.Free;
+    end;
+  end;
+
 var
-  ini: TiniFile;
   fn: string;
 begin
   fn := ChangeFileExt(ParamStr(0),'.ini');
-  ini := TiniFile.Create(fn);
-  try
-    DM.MCPClient.LLM.Settings.OllamaHost := ini.ReadString('Settings', 'OllamaHost', 'localhost');
-    DM.MCPClient.LLM.Settings.OllamaPort := ini.ReadInteger('Settings', 'OllamaPort', 11434);
-  finally
-    ini.Free;
-  end;
   DM.MCPClient.LLM.APIKeys.LoadFromFile(fn, ParamStr(0));
+  if HasModelSettings(fn) then
+    DM.MCPClient.LLM.Settings.LoadFromFile(fn);
 end;
 
 procedure TFormMain.MCPClientExecuted(Sender: TObject;
@@ -213,6 +217,8 @@ begin
     4: DM.MCPClient.LLM.Service := aiMistral;
     5: DM.MCPClient.LLM.Service := aiDeepSeek;
     6: DM.MCPClient.LLM.Service := aiOllama;
+    7: DM.MCPClient.LLM.Service := aiOpenRouter;
+    8: DM.MCPClient.LLM.Service := aiLlamaCpp;
   end;
 
   CheckAPIKey;
@@ -230,6 +236,8 @@ begin
     aiMistral: key := DM.MCPClient.LLM.APIKeys.Mistral;
     aiDeepSeek: key := DM.MCPClient.LLM.APIKeys.DeepSeek;
     aiOllama: key := DM.MCPClient.LLM.Settings.OllamaHost;
+    aiOpenRouter: key := DM.MCPClient.LLM.APIKeys.OpenRouter;
+    aiLlamaCpp: key := DM.MCPClient.LLM.Settings.LlamaCppModel;
   end;
 
   btnAsk.Enabled := key <> '';

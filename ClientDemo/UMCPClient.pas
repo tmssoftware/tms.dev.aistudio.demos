@@ -32,18 +32,11 @@ uses
 
 procedure TDM.SettingsDialogAPIKeysChanged(Sender: TObject);
 var
-  ini: TiniFile;
   fn: string;
 begin
   fn := ChangeFileExt(ParamStr(0),'.ini');
   MCPClient.LLM.APIKeys.SaveToFile(fn, ParamStr(0));
-  ini := TiniFile.Create(fn);
-  try
-    ini.WriteString('Settings', 'OllamaHost', MCPClient.LLM.Settings.OllamaHost);
-    ini.WriteInteger('Settings', 'OllamaPort', MCPClient.LLM.Settings.OllamaPort);
-  finally
-    ini.Free;
-  end;
+  MCPClient.LLM.Settings.SaveToFile(fn);
 end;
 
 procedure TDM.SettingsDialogServersChanged(Sender: TObject);

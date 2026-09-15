@@ -35,8 +35,8 @@ object FormMain: TFormMain
     Size.PlatformDefault = False
     TabOrder = 1
     OnKeyDown = memAskKeyDown
-    Viewport.Width = 708.000000000000000000
-    Viewport.Height = 63.000000000000000000
+    Viewport.Width = 712.000000000000000000
+    Viewport.Height = 67.000000000000000000
   end
   object btnAsk: TButton
     Anchors = [akRight, akBottom]
@@ -59,7 +59,9 @@ object FormMain: TFormMain
       'Grok'
       'Mistral'
       'DeepSeek'
-      'Ollama')
+      'Ollama'
+      'OpenRouter'
+      'llama.cpp')
     ItemIndex = 0
     Position.X = 519.000000000000000000
     Position.Y = 588.000000000000000000
