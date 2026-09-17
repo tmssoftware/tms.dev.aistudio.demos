@@ -1,4 +1,4 @@
-﻿program SSEServerDemo;
+program WeatherApiStreamableHTTPDemo;
 
 {$APPTYPE CONSOLE}
 
@@ -11,8 +11,7 @@ uses
   TMS.MCP.Server,
   TMS.MCP.Tools,
   TMS.MCP.Helpers,
-  TMS.MCP.Transport.STDIO,
-  TMS.MCP.Transport.SSE,  // Add SSE transport for SSL support
+  TMS.MCP.Transport.StreamableHttp,  // Add SSE transport for SSL support
   TMS.MCP.CloudBase,
   IdSSLOpenSSL;  // Add SSL support
 
@@ -272,11 +271,11 @@ begin
 end;
 
 // Configure SSL Transport with logging
-procedure ConfigureSSLTransport(var SSETransport: TTMSMCPSseTransport; Port: Integer;
+procedure ConfigureSSLTransport(var StreamableHttpTransport: TTMSMCPStreamableHttpTransport; Port: Integer;
   const CertFile, KeyFile, KeyPassword: string);
 begin
   LogToConsole('Configuring SSL transport...');
-  SSETransport := TTMSMCPSseTransport.Create(nil, Port);
+  StreamableHttpTransport := TTMSMCPStreamableHttpTransport.Create(nil, Port);
 
   // Use anonymous procedure for OnLog event
  // SSETransport.OnLog := procedure(const Msg: string)
@@ -289,10 +288,10 @@ begin
     begin
       // Configure PFX certificate
       LogToConsole(Format('Using PFX certificate: %s', [CertFile]));
-      SSETransport.CertFile := CertFile;
-      SSETransport.KeyFile := '';  // Not used in PFX mode
-      SSETransport.KeyPassword := KeyPassword;
-      SSETransport.UseSSL := True;
+      StreamableHttpTransport.CertFile := CertFile;
+      StreamableHttpTransport.KeyFile := '';  // Not used in PFX mode
+      StreamableHttpTransport.KeyPassword := KeyPassword;
+      StreamableHttpTransport.UseSSL := True;
 
       // The SSE transport should handle PFX files through the SSL IOHandler
       // Set the PFX file as the certificate file
@@ -301,7 +300,7 @@ begin
     begin
       // Configure separate certificate and key files
       LogToConsole(Format('Using certificate: %s, key: %s', [CertFile, KeyFile]));
-      SSETransport.ConfigureSSL(CertFile, KeyFile, KeyPassword);
+      StreamableHttpTransport.ConfigureSSL(CertFile, KeyFile, KeyPassword);
     end;
 
     LogToConsole('SSL configuration completed');
@@ -309,8 +308,8 @@ begin
     on E: Exception do
     begin
       LogToConsole(Format('SSL configuration failed: %s', [E.Message]));
-      SSETransport.Free;
-      SSETransport := nil;
+      StreamableHttpTransport.Free;
+      StreamableHttpTransport := nil;
       raise;
     end;
   end;
@@ -319,7 +318,7 @@ end;
 var
   Server: TTMSMCPServer;
   Tool: TTMSMCPTool;
-  SSETransport: TTMSMCPSseTransport;
+  StreamableHttpTransport: TTMSMCPStreamableHttpTransport;
   UseSSL: Boolean;
   Port: Integer;
   CertFile, KeyFile, KeyPassword: string;
@@ -353,13 +352,15 @@ begin
         .&End
       .Build;
 
-     SSETransport := TTMSMCPSseTransport.Create(nil, port);
-     server.Transport := SSETransport;
-
     // Add tool to server
     Server.Tools.Add(Tool);
     LogToConsole('Weather tool registered');
 
+    // Configure transport based on SSL setting
+
+    StreamableHttpTransport := TTMSMCPStreamableHttpTransport.Create(nil, Port);
+
+    Server.Transport := StreamableHttpTransport;
 
     LogToConsole('Starting MCP server...');
 
@@ -391,8 +392,7 @@ begin
   LogToConsole('Weather MCP Server shutting down...');
 
   // Cleanup
-  FreeAndNil(SSETransport);
+  FreeAndNil(StreamableHttpTransport);
 
   LogToConsole('Server shutdown complete');
 end.
-

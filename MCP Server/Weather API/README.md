@@ -1,70 +1,77 @@
 # Weather API
 
-A minimal MCP server exposing a single `get_weather` tool, built with `TMS.MCP.Server`. Two variants of the same tool are included, one per transport: STDIO (`WeatherApiSTDIODemo`) and SSE (`WeatherApiSSEDemo`). Start here if you're new to the TMS MCP SDK.
+A minimal MCP server exposing a single `get_weather` tool, built with `TMS.MCP.Server`. The same tool is implemented three times, one per transport, so you can compare them side by side: STDIO (`WeatherApiSTDIODemo`), SSE (`WeatherApiSSEDemo`), and Streamable HTTP (`WeatherApiStreamableHTTPDemo`). Start here if you're new to the TMS MCP SDK.
 
 ## Overview
 
-The server exposes a weather tool to retrieve current weather information for specified cities. It uses the OpenStreetMap API to geocode city names into coordinates and the Open-Meteo API to fetch current weather data.
+Each variant exposes a `get_weather` tool that geocodes a city name via the OpenStreetMap API and fetches current conditions from the Open-Meteo API.
+
+- **WeatherApiSTDIODemo** — the simplest of the three: STDIO transport, plus an optional `units` parameter (`celsius`/`fahrenheit`) on the tool itself.
+- **WeatherApiSSEDemo** and **WeatherApiStreamableHTTPDemo** — identical to each other apart from transport. Both add verbose console logging of each request and geocoding/weather lookup step, a configurable port, and optional TLS (self-signed cert/key files or a PFX).
 
 ## Requirements
 
 - Delphi 11.1 or later
 - TMS AI Studio
+- OpenSSL libraries on the `PATH` (only required when using `--ssl` with the SSE or Streamable HTTP variant)
 
-## Building the STDIO Server
+## Building
 
-1. Open the `WeatherApiSTDIODemo.dproj` project in your Delphi IDE.
-2. Build the project (Shift+F9 or Run → Build).
-3. The compiled executable will be available in the `Win32\Debug` or `Win32\Release` folder, depending on your configuration.
+Open the corresponding `.dproj` in your Delphi IDE and build it (Shift+F9 or Run → Build). The compiled executable is written to `Win32\Debug` or `Win32\Release`.
 
-## Building the SSE Server
+## Running the SSE / Streamable HTTP variants
 
-1. Open the `WeatherApiSSEDemo.dproj` project in your Delphi IDE.
-2. Build the project (Shift+F9 or Run → Build).
-3. The compiled executable will be available in the `Win32\Debug` or `Win32\Release` folder, depending on your configuration.
+```
+WeatherApiSSEDemo [options]
+WeatherApiStreamableHTTPDemo [options]
+```
 
-## Setting Up a Client with STDIO
+**Options:**
 
-You can use any MCP client that supports STDIO transport to connect to this server. Here are two common options:
+- `--port, -p <port>`           Port number (default: 8934)
+- `--ssl, -s`                   Enable SSL/TLS
+- `--cert, -c <file>` / `--key, -k <file>`   Certificate and key files (PEM)
+- `--pfx <file>` / `--pfxpass <password>`    Certificate as PKCS#12/PFX
+- `--help, -h`                  Show help
 
-### Option 1: Using Claude for Desktop
+Examples:
 
-1. Install [Claude for Desktop](https://claude.ai/download).
-2. Edit or create the Claude Desktop configuration file located at:
-   - macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
-   - Windows: `%APPDATA%\Claude\claude_desktop_config.json`
-3. Add the Weather API (STDIO) Demo server to the `mcpServers` section:
+```
+WeatherApiSSEDemo
+WeatherApiSSEDemo --ssl --cert server.crt --key server.key
+WeatherApiSSEDemo --ssl --pfx server.pfx --pfxpass mypassword
+```
+
+The STDIO variant takes no command-line options; the `units` parameter is passed as a tool argument instead.
+
+## Setting up a client
+
+### STDIO (`WeatherApiSTDIODemo`)
+
+Any MCP client that supports STDIO transport can connect directly.
+
+**Claude for Desktop** — add to `claude_desktop_config.json`:
 
 ```json
 {
   "mcpServers": {
     "weather": {
-      "command": "PATH_TO_EXE\\WeatherApiDemo.exe",
-      "args": []
+      "command": "PATH_TO_EXE\\WeatherApiSTDIODemo.exe"
     }
   }
 }
 ```
 
-Replace `PATH_TO_EXE` with the absolute path to your compiled executable.
+**MCP Inspector:**
 
-4. Restart Claude for Desktop.
-5. Ask Claude about the weather in a city, e.g., "What's the current weather in Paris?"
+```bash
+npx @modelcontextprotocol/inspector PATH_TO_EXE\WeatherApiSTDIODemo.exe
+```
 
-### Option 2: Using MCP Inspector
+### SSE (`WeatherApiSSEDemo`)
 
-1. Install the MCP Inspector tool:
-   ```bash
-   npm install -g @modelcontextprotocol/inspector
-   ```
+Any MCP client that supports SSE transport can connect to `http://localhost:<port>/sse` (or `https://` when `--ssl` is used).
 
-2. Run the Inspector with your server:
-   ```bash
-   npx @modelcontextprotocol/inspector PATH_TO_EXE\WeatherApiSTDIODemo.exe
-   ```
+### Streamable HTTP (`WeatherApiStreamableHTTPDemo`)
 
-3. Use the Inspector UI to test the `get_weather` tool functionality.
-
-## Setting Up a Client with SSE
-
-The steps are almost identical as above. You'll need an SSE capable client and instead of the path to the executable you'll need to use the URL of your server (for example: `http://localhost:8934/sse`).
+Any MCP client that supports Streamable HTTP transport can connect to `http://localhost:<port>/mcp` (or `https://` when `--ssl` is used).
