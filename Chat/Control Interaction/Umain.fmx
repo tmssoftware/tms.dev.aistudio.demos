@@ -1,0 +1,652 @@
+object Form3: TForm3
+  Left = 0
+  Top = 0
+  Caption = 'AI Planner - Replan the Day'
+  ClientHeight = 900
+  ClientWidth = 1440
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object BodyLayout: TLayout
+    Align = Client
+    Padding.Left = 12.000000000000000000
+    Padding.Right = 12.000000000000000000
+    Padding.Bottom = 12.000000000000000000
+    Size.Width = 1440.000000000000000000
+    Size.Height = 780.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object ChatLayout: TLayout
+      Align = Right
+      Margins.Left = 12.000000000000000000
+      Position.X = 998.000000000000000000
+      Size.Width = 430.000000000000000000
+      Size.Height = 768.000000000000000000
+      Size.PlatformDefault = False
+      object TMSMCPChatView1: TTMSMCPChatView
+        Touch.InteractiveGestures = [LongTap]
+        Messages = <>
+        Appearance.Buttons.Color = xFFEFF3F9
+        Appearance.Buttons.TextColor = xFF202936
+        Appearance.Buttons.BorderColor = xFFA0B2C8
+        Appearance.Buttons.HoverColor = xFFDEEBFB
+        Appearance.Buttons.PressedColor = xFFB8D3F4
+        Appearance.Buttons.DisabledColor = xFFE9ECF0
+        Appearance.Buttons.DisabledTextColor = xFF707885
+        Appearance.Buttons.FocusColor = xFF1766C2
+        Appearance.Options.Color = xFFEFF3F9
+        Appearance.Options.TextColor = claBlack
+        Appearance.Options.BorderColor = xFFA0B2C8
+        Appearance.Options.PrimaryColor = xFF1766C2
+        Appearance.Options.PrimaryTextColor = claWhite
+        Appearance.Options.DestructiveColor = xFFB82828
+        Appearance.Options.SelectedColor = xFFCCE2FC
+        Appearance.Options.HoverColor = xFFDEEBFB
+        Appearance.Options.PressedColor = xFFB8D3F4
+        Appearance.Options.DisabledColor = xFFE9ECF0
+        Appearance.Options.DisabledTextColor = xFF707885
+        Appearance.Options.FocusColor = xFF1766C2
+        Appearance.BackgroundColor = xFFF3F5F8
+        Appearance.IncomingColor = claWhite
+        Appearance.OutgoingColor = xFFE4EFFF
+        Appearance.TextColor = xFF202936
+        Appearance.AccentColor = xFF1766C2
+        Appearance.FontName = 'Arial'
+        Appearance.SenderFontSize = 11.000000000000000000
+        Appearance.StatusFontName = 'Arial'
+        Appearance.StatusFontSize = 11.000000000000000000
+        Appearance.StatusColor = xFF647082
+        Appearance.RemoveAttachmentText = 'Remove'
+        Interaction.EnableCloudAIInteractions = True
+        CloudAI = TMSMCPCloudAI1
+        OnMessageInteraction = ChatMessageInteraction
+        Align = Client
+      end
+    end
+    object PlannerLayout: TLayout
+      Align = Client
+      Size.Width = 974.000000000000000000
+      Size.Height = 768.000000000000000000
+      Size.PlatformDefault = False
+      object PlannerHeader: TLayout
+        Align = Top
+        Size.Width = 974.000000000000000000
+        Size.Height = 80.000000000000000000
+        Size.PlatformDefault = False
+        object ResetButton: TButton
+          Align = Right
+          Margins.Top = 14.000000000000000000
+          Margins.Bottom = 30.000000000000000000
+          Position.X = 864.000000000000000000
+          Position.Y = 54.000000000000000000
+          Size.Width = 110.000000000000000000
+          Size.Height = 0.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'Reset demo'
+          TextSettings.Trimming = None
+          OnClick = ResetClick
+        end
+        object PlannerTitleLabel: TLabel
+          Align = Top
+          StyledSettings = []
+          Size.Width = 974.000000000000000000
+          Size.Height = 40.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 24.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = xFF172033
+          Text = 'Team planning'
+        end
+        object ScheduleSummaryLabel: TLabel
+          Align = Client
+          StyledSettings = []
+          Size.Width = 864.000000000000000000
+          Size.Height = 40.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.FontColor = xFF64748B
+          Text = 
+            'Drag appointments to move them. Ask the assistant to find time o' +
+            'r replan.'
+        end
+      end
+      object ToolActivityLayout: TLayout
+        Align = Bottom
+        Margins.Top = 10.000000000000000000
+        Position.Y = 734.000000000000000000
+        Size.Width = 974.000000000000000000
+        Size.Height = 34.000000000000000000
+        Size.PlatformDefault = False
+        object ToolActivityToggle: TCheckBox
+          Align = Top
+          Size.Width = 974.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'Show tool activity'
+          OnChange = ToggleToolActivity
+        end
+        object ToolActivityMemo: TMemo
+          Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+          DataDetectorTypes = []
+          ReadOnly = True
+          TextSettings.Font.Family = 'Consolas'
+          TextSettings.Font.Size = 11.000000000000000000
+          Align = Client
+          Size.Width = 974.000000000000000000
+          Size.Height = 144.000000000000000000
+          Size.PlatformDefault = False
+          Visible = False
+          Viewport.Width = 974.000000000000000000
+          Viewport.Height = 144.000000000000000000
+        end
+      end
+      object Planner1: TTMSFNCPlanner
+        Align = Client
+        Size.Width = 974.000000000000000000
+        Size.Height = 644.000000000000000000
+        Size.PlatformDefault = False
+        OnResize = PlannerResize
+        DefaultItem.StartTime = 46352.270833333340000000
+        DefaultItem.EndTime = 46352.375000000000000000
+        DefaultItem.StrokeColor = claDarkgray
+        DefaultItem.TitleStrokeColor = claDarkgray
+        DefaultItem.MarkCorners = [gcTopLeft, gcTopRight, gcBottomLeft, gcBottomRight]
+        DefaultItem.RoundingCorners = [gcTopLeft, gcTopRight, gcBottomLeft, gcBottomRight]
+        GridCellAppearance.VerticalStroke.Color = xFFE2E8F0
+        GridCellAppearance.HorizontalStroke.Color = xFFE2E8F0
+        GridCellAppearance.HorizontalSubStroke.Color = xFFF1F5F9
+        GridCellAppearance.Fill.Kind = gfkSolid
+        Groups = <>
+        GroupsAppearance.TopSize = 50.000000000000000000
+        GroupsAppearance.BottomSize = 50.000000000000000000
+        GroupsAppearance.TopFont.Color = claGray
+        GroupsAppearance.BottomFont.Color = claGray
+        FullDaysAppearance.AutoItemHeight = 25.000000000000000000
+        FullDaysAppearance.TopSize = 25.000000000000000000
+        FullDaysAppearance.BottomSize = 25.000000000000000000
+        Interaction.KeyboardEdit = False
+        Interaction.UpdateMode = pumNone
+        Interaction.SwipeToNextDateTime = False
+        Interaction.SwipeToPreviousDateTime = False
+        Items = <>
+        Mode = pmDay
+        ModeSettings.StartTime = 46352.476767210650000000
+        ModeSettings.EndTime = 46372.476767210650000000
+        ModeSettings.InActiveDays = []
+        ModeSettings.OverlappableItems = False
+        PositionsAppearance.Size = 100.000000000000000000
+        PositionsAppearance.TopSize = 48.000000000000000000
+        PositionsAppearance.BottomSize = 50.000000000000000000
+        PositionsAppearance.TopFont.Size = 14.000000000000000000
+        PositionsAppearance.TopFont.Color = xFF172033
+        PositionsAppearance.BottomFont.Color = claGray
+        PositionsAppearance.TopFill.Color = xFFF1F5F9
+        PositionsAppearance.TopStroke.Color = xFFE2E8F0
+        PositionsAppearance.TopLeftNavigationButtonSize = 18.000000000000000000
+        PositionsAppearance.TopRightNavigationButtonSize = 18.000000000000000000
+        PositionsAppearance.BottomLeftNavigationButtonSize = 18.000000000000000000
+        PositionsAppearance.BottomRightNavigationButtonSize = 18.000000000000000000
+        Resources = <
+          item
+            Name = 'sarah'
+            Text = '<b>Sarah</b><br><font color="#2563EB">Product design</font>'
+            Hint = 'Product design and client workshops'
+          end
+          item
+            Name = 'alex'
+            Text = '<b>Alex</b><br><font color="#7C3AED">Development</font>'
+            Hint = 'Development, code reviews and deployment'
+          end
+          item
+            Name = 'tom'
+            Text = '<b>Tom</b><br><font color="#059669">Quality assurance</font>'
+            Hint = 'Quality assurance and release validation'
+          end>
+        Stroke.Color = xFFE2E8F0
+        TimeLine.DisplayUnitFormat = 'hh:nn'
+        TimeLine.DisplaySubUnitFormat = 'nn'
+        TimeLine.DisplayUnit = 15
+        TimeLine.DisplayStart = 36
+        TimeLine.DisplayEnd = 71
+        TimeLine.ActiveStart = 36
+        TimeLine.ActiveEnd = 72
+        TimeLine.DisplayUnitSize = 15.000000000000000000
+        TimeLine.ViewStart = 46352.000000000000000000
+        TimeLine.CurrentTimeMode = pctmNone
+        TimeLineAppearance.LeftSize = 64.000000000000000000
+        TimeLineAppearance.RightSize = 50.000000000000000000
+        TimeLineAppearance.LeftFill.Color = xFFF8FAFC
+        TimeLineAppearance.LeftStroke.Color = xFFE2E8F0
+        TimeLineAppearance.LeftSubStroke.Color = xFFF1F5F9
+        TimeLineAppearance.LeftFont.Size = 11.000000000000000000
+        TimeLineAppearance.LeftFont.Color = xFF64748B
+        TimeLineAppearance.RightFont.Size = 18.000000000000000000
+        TimeLineAppearance.RightFont.Color = claGray
+        TimeLineAppearance.LeftSubUnitFontSize = 10.000000000000000000
+        TimeLineAppearance.RightSubUnitFontSize = 16.200000000000000000
+        ItemsAppearance.Gap = 4.000000000000000000
+        ItemsAppearance.MoveAreaSize = 4.000000000000000000
+        ItemsAppearance.SizeAreaSize = 4.000000000000000000
+        ItemsAppearance.DeleteAreaSize = 16.000000000000000000
+        ItemsAppearance.DeleteHandlerBitmap.PNG = {
+          89504E470D0A1A0A0000000D4948445200000040000000400806000000AA6971
+          DE0000000473424954080808087C0864880000046649444154789CED9B4F685C
+          451CC7BFBFD9ACD9B76649501A8A420E3948B3E0EA6612A4182182083682C18B
+          878260857AF2E245D083F524F1A87828683CF4644FA2E622A2815642FE4C2209
+          6C45160F525389354DA06ED2AC3B3F0F3E6533FBB26F3699DD31E47D2087FDBD
+          DFFBCD77BE3B33792F9921B41929E53011BDC6CC13001E024031B7308075229A
+          61E6CB4AA9E576EA8B137368C6C7C733DBDBDB1F0A212E0010872CA3B5D6D3BD
+          BDBDAFCFCECEEEBAD4F72F6D31209FCFF764B3D9AF99F9AC8B7A443457A9549E
+          2D954A775DD4ABE7B0DF4C5382209876D5790060E6B341104CBBAA578FF31120
+          A59C00F095EBBA21CF2BA5665C16743E0298F9ADA830117D04602897CB053B3B
+          3BDD513FB95C2E003014E6B265ED23E174048C8E8E9ED65AFF0AC358227A7769
+          69E9522BB54646462E31F33B46580B211E5E5C5CFCED8852FFC3E90860E6E188
+          9A77B6B6B6DE6BB55678CF1D232CC2369CE17A0A9C3603CCBC562E97EFB55AA8
+          5C2EDF63E6359B368E42974D52B1583C258478D02275202A28A53CD392AA10E6
+          86650000066CEA69ADFF585959F93D2EAFE91A90CFE7EFCB64329F11D1645CA1
+          FF23CCFCF9EEEEEE4BA55269EFA09CA653209BCD5E3CAE9D0700229ACC66B317
+          9BE53435A056AB3DE65652E789EB43530352A954CAAD9CCE13D7878645504A99
+          06F0040068ADFB89DAF6BED411B4D6FD52CAB1F0E3BC52AA5A7F3DEAB7402F80
+          6B0070DC3B0F004434016022FC780AC0EDFAEB6D79193A4E2406F816E09B8635
+          A0ABAB6BAF56AB7D591FD35AF710D1D3466C33954A7D6FDB90D6BA0B408699EF
+          6F9647447F02D81542FC655BBB56AB3D298478A03EC6CCDF0921F6FD0125954A
+          353C1059AD72E1A3E70DA381EBCBCBCB4FD98A6C27C3C3C3D78868CC080F29A5
+          7E8CBBF7C44F81C400DF027C63F53A6C8B947280889EA98F31F34F4AA9EB46DE
+          A344346AE42D2AA5D68CBC31227AC4C8FB4629F58B2BCD4E0D20A2C799F91323
+          F629807D0630F37300A68CD89B00F61940441798F91523F6020067069CF82990
+          18E05B806F12037C0BF04D62806F01BE490CF02DC0378901BE05F82631C0B700
+          DF2406F816E09BC400DF027C9318E05B806F12037C0BF04D62806F01BE490CF0
+          2DC0378901BE05F8E6C41BE0F49FA3954AE5DB200886EA63CCBC6DE67577777F
+          BCB7B7F78511DB30F398F96D00EF1B6DDC742417806303C2434DB1DB52E6E6E6
+          36016CC6E529A56E01B8E540DA81584D01226AD8B74E444ECD3B0A515AA23447
+          61658010E27644F88C94326B737F3B0935349C1F3840730356062C2C2C6C0230
+          E75E1F335F29140AFD3635DA41A150E867E62B00FA8C4B3743CDB1D80E630670
+          15C01BF541227A319D4E4F168BC52D22D296B59CC0CC4208D187E82FF12A224E
+          9D45613D8FABD5EA543A9D7E15FF6CA6AE47989B143B41938DDCDBD56A75EAA0
+          8B26D6CF01ABABAB1B00CE33B3F50ECE4E136A3B1F6AB5A2A50721A5D48C10E2
+          1C335B37D0299879430871AED593A52D9F08595F5FFF797070F072B55ABD4344
+          39003D0032ADD671C416801F98F98320085E9E9F9FBF117B87C1DF8E777F2C9B
+          E2D23B0000000049454E44AE426082}
+        ItemsAppearance.SizeHandlerHeight = 30.000000000000000000
+        ItemsAppearance.SizeHandlerWidth = 50.000000000000000000
+        ItemsAppearance.DeleteHandlerHeight = 30.000000000000000000
+        ItemsAppearance.DeleteHandlerWidth = 30.000000000000000000
+        ItemsAppearance.SizeHandlerLeftBitmap.PNG = {
+          89504E470D0A1A0A0000000D4948445200000040000000400806000000AA6971
+          DE0000000473424954080808087C086488000002E849444154789CDD9B3F8BD4
+          4018C69F997993D4FE011B43E03C172C2C8D9E959D1C7E82ADF4BE899F40142C
+          EC8EAB166B45114B4125D85908277855B05AB14DF266D7E6168EE5E476263399
+          997DDA6492F7F9E59DDD997766040256599693B66D9F2BA5F6D7AF31F38952EA
+          88886655551D9BBE430D0BD19DCAB29C344DF39688EE9E775D4A794908F160B9
+          5C5ECDF3FC7B5DD77393F70409E0F4CBBF23A2DD0D6EBF3D0442700056E69552
+          37349A1943909AF13995A1F995A6CC3CD56D144C060C340F0060E66B45517CD4
+          C9822032C08679004892E4966E16780760CBBCA9BC02F06D1EF0082004F38027
+          00AECCF77DFF9788663A6D4607E0F2CB0B215EE90E8B4705E0D27CDFF79F9324
+          39D46D371A0097E699F96B9AA607269322613B98F3E4DA7C96658F4D6784CE01
+          846C1E700C2074F38043003198071C0188C53CE000404CE601CB0062330F5804
+          10A379C0128058CD031600C46C1E18082076F3C00000DB601E3004B02DE60183
+          D9E0E98ACD9B6D300F680228CB72C2CCCF8868623B101FE6014D00CC3C15423C
+          B21D842FF3400065719FE601CF007C9B0702C800DFF20A8088EE354D735496A5
+          F51FD54DE53D037C43D05A1DCEF3FCF762B1D81142580D564A79BDEBBA3B4551
+          7C32DDE9612A2D00755DCFF33CFFD675DD4329E5159B81F882603C146E9AE63D
+          11EDD80E68EC7F864193A16D8030783A1C3B042B05919821582B89B982D0F7FD
+          97344D9F045B125B295608D6CBE2B14170B230121304674B63B14070BA381A03
+          04E7CBE3A14318658344C81046DB22132A84510000E14218AD205255D5719665
+          FBCCFCCBF6B395527B6DDB1E9A145546AD08398670BFEBBA03DD76A37581B372
+          D51DFABEFF93A6E99E4E57F052137495094AA9CBD19C1770D91D74E4B52A1C02
+          04EF6571DF10BC0300EC41E8BAEE47F0E705FE271B1088E875D0E7052ED24008
+          33DDAF0F781A075C248371C24C29F534E8A1B08ECE64C2CF0D6E37360F047472
+          745D755DCF8BA2F8C0CCBB52CA9BEBD799F94408F182885E0E990EFF03312FA9
+          33D9B3CDE70000000049454E44AE426082}
+        ItemsAppearance.SizeHandlerRightBitmap.PNG = {
+          89504E470D0A1A0A0000000D4948445200000040000000400806000000AA6971
+          DE0000000473424954080808087C086488000002F749444154789CDD9B3D8FD3
+          3018809F7C345EE1B8A52AB90A902A313012016260E5801975E174FF809FC03F
+          3998EE072038568404286263402A822DEA5489B58D9DB2F4961BE0ECD8B5DD77
+          6DDED8CF93A6B55FDB093DA2AAAA899472AA943ACAF3FCC6C5CF9552674551BC
+          ACEB7AD6A71D97919826565535514ABD02A6FFBA4E4AF95308F134540946022E
+          0B7F1E4AA95F45511C8628415B802EFC79842A21D54D90524ED18407C8B2ECD6
+          6AB57A5F55D54437D7656809D8FCE83D376D2C44095A02A494D3C16070BB4F83
+          A149D07E056C444812BC088070247813006148D01290E7F9A952EA8FCD0EF896
+          90E95CDC34CD62381C5E4992E4A1CD4EA469BA27A53C3C3838F8D034CDC2E6BD
+          FFDBB66EC2603038514A7DB6DD115FDF046D01755DCF8AA23896527EB5DD191F
+          127A4D8696CBE59B3CCFEFD9EC106C77D86C2C007643422F0110BF84DE02206E
+          09560440BC12AC09803825581500F149B02E00E292E04400C423C19900884382
+          530110BE04E702206C095B1100E14AD85A45A8AEEB9910E2C8D52C72B95CBE35
+          99456A1544FA46D3348BF178FCA96DDBBB699A5EB779EF344DAF755D77B32CCB
+          6F3A4595AD0A00B712922499745DB798CFE71F2F9BE3A528EAF275D00D6F55E1
+          5024782D8B8710DE04B8FC5BD4092F024281070F025CC2AFD7EB77799E9FEAE4
+          6C6D24086EE1A5943321C433DDD1E04E0C85A594BF85108F4D86C2D14F86FAC0
+          43E4D3E1BEF0107141C4063C382E89AD56ABD75996DDB77D6F5BF0E0B0281A03
+          3C382A8BC7020F0E1646628207CB4B63B1C183C5C5D118E1C1D2F278ACF06061
+          8344CCF0D0738B4CECF0D0E3BCC02EC083413D60037FB20BF06020A06DDBE32C
+          CB1ED8EE880F78D07C05364FFF4B96657B363BE10B1E0CCE0BEC123C782E8BFB
+          86078F024280074F0242810783F3026DDBFEE8D36048F060705E60341AED2749
+          F2C8A4B1D0E0C16079BC2CCBF97ABDDE07EEE8E485080F06029AA6599465F95D
+          4742A8F060B8414247C2E6F0F49310E1A1C70E9173095DD72D9452E3344DAF5E
+          BC462975268478112A3CC05FBFEDBABC7E06BF550000000049454E44AE426082}
+        ItemsAppearance.SizeHandlerUpBitmap.PNG = {
+          89504E470D0A1A0A0000000D4948445200000040000000400806000000AA6971
+          DE0000000473424954080808087C086488000002A549444154789CED9A3D8ED3
+          4014809F679E3CF410D1E04442900AAA08C319F83900D5C21538C19E00096939
+          4044910300E20020406EB7400A425B5954A1A388FCC6A6206F6542D88DED3763
+          AF98AFB5FDDE7C9F52D85200028140201008040281FF92C8F7C2344DA744F478
+          D735445C6459B6F4791EAF0136F2CFA3287AB0EB7A55556F11F199CF08DE02A4
+          693A5DAFD7AF11717AD67D44B434C63CF215C14B808DFC3B44BCBECFFDD6DA6F
+          711CDFF711C17980A6F28CAF084E03B495677C447016A0AB3CE33A82930052F2
+          8CCB08E201A4E51957114403B892675C44100BE05A9E918E2012C0973C2319A1
+          7300DFF28C54844E01FA92672422B40ED0B73CD33542AB00439167BA44681C60
+          68F24CDB088D020C559E691361EF004397679A46D82BC04591679A443837804B
+          7922FA0C008088F7A467EF1BE1CC00AEE58D31070000EBF57ADE57847F06F021
+          CF07DBECEA25C2CE003EE5B7767A8FF057803EE4B7767B8DF047803EE5B7CEE0
+          2DC2698021C86F9DC54B84A8B67010F28CAF08D166D11B44BC29BDA8AD3CE332
+          02117D35C63CD4A3D1E81522DE955E60ADFD648C79D2E55B3DCFF3D56432795F
+          14C51DA5D435C9F329A52E13D18D68369B559283017ECBC771DC49BE8ECB5F82
+          921E282D0F009065D9D21873C0AFCE9288067021CFB88A2016C0A53CE3228248
+          001FF28C74044544275D06F89467A42210D189D25ACFDB0EE8439E9188A0B59E
+          EB2449BE57557505006E3779B84F79A6E37BC202118F749EE7AB24498E9B4418
+          823CD332C2426B7D9865D952F3907D23586B3FC671FC7408F20C4720A299522A
+          39E7F6537900005D1F9224C97159962B22BAAAB51ED59FB2D6FE008017711C1F
+          0E499EC9F37C351E8F3F586B7F9665794B2975A97EBD288A2F4AA9978878B4F3
+          73B8CEAE3F33F6F127C6B65CF4F30702814020100804021EF8050307BD648289
+          B26D0000000049454E44AE426082}
+        ItemsAppearance.SizeHandlerDownBitmap.PNG = {
+          89504E470D0A1A0A0000000D4948445200000040000000400806000000AA6971
+          DE0000000473424954080808087C086488000002B949444154789CED9ABF6ED3
+          401C803FFB2E971524D44E69D40E9118BAA113E50DE0051013EDC600521FA1CF
+          C1523A553C00AAC48A84905706A4548C1EC39EE42E66C1C8AD4213DB776757DC
+          37FAEFEFFBA20CB60F229148241289442291FF9264DD46ADF5C418F3AABA4D4A
+          799965D934CC58EDA833FF8D00E589C6989783C1E071759FB5F6579224EF0783
+          C1795F4368AD27CBE5F2A4288A37428807D57DCBE5F28794F2E3ED1049F5646B
+          ED1970A3DC6DACB55F9552277D8BA0B59E2C168B7321C4B30D875E0A21CECAF9
+          4579F236F200699A8E8C314FF6F6F6BEE4793E6B3DB903B4D693F97C7E21A53C
+          DAE2F0C3A2281E8D46A3EF799ECF441DF9923E45A8C83FAD71DADF08627777F7
+          6D9224EFEADEB80F111ACA971CAE56AB99D8D9D9394FD3F4619301BA8CD0521E
+          006BED389552EEB719440871B4582C3E68AD276DAE530717F20052CAFDD4C540
+          2123B8922F711200C244702D0F0E0380DF083EE4C17100F013C1973C406AADBD
+          727D5197117CCA5B6BAF52A5D4A931E6DAF5C5851047F3F9FCA24D049FF2C698
+          6BA5D46952B9D19594F2C0C38DBE0D87C3D7759F1D3CFFF23F95522FB22C9BDE
+          7818EA4B8450F2B0E671B8EB0821E561CD0B912E238496873BDE08858ED0853C
+          FC234065A02011BA92873B025406F31A01A02B79D81000FC4700E84A1EB60800
+          7E23F8605B79D83200DC9F0875E4A14600E87F84BAF2503300F4374213796810
+          00FA17A1A93C340C00FD89D0461E5A0480EE23B495879601A0BB082EE4C14100
+          081FC1953C380A00E122B894078701C07F04D7F2E03800F88BE0431E3C0400F7
+          117CC983A700E02E824F79F01800DA47F02D0F9E0340F30821E4214000A81F21
+          943C78F836B88E2CCBA6C3E1F0B93166A39031661A4A1EFE2C920A419EE7B3F1
+          78FC79B55A1D2449B2F6735951149F9452C72157A005F90B5459B788B1E43E2D
+          C68C4422914824128944EE39BF01373E8D6BA35E03720000000049454E44AE42
+          6082}
+        ItemsAppearance.LinkStroke.Width = 2.000000000000000000
+        ItemsAppearance.LinkArrowSize = 7.000000000000000000
+        ItemsAppearance.TitleFill.Color = xFFDBEAFE
+        ItemsAppearance.TitleFont.Color = xFF1E40AF
+        ItemsAppearance.TitleFont.StyleExt = {00070000000000000004000000}
+        ItemsAppearance.Fill.Color = xFFDBEAFE
+        ItemsAppearance.Stroke.Color = claWhite
+        ItemsAppearance.Font.Size = 11.000000000000000000
+        ItemsAppearance.Font.Color = xFF1E40AF
+        ItemsAppearance.SelectedTitleFill.Color = xFFBFDBFE
+        ItemsAppearance.SelectedTitleFont.Color = xFF172033
+        ItemsAppearance.SelectedTitleFont.StyleExt = {00070000000000000004000000}
+        ItemsAppearance.ActiveTitleFont.StyleExt = {00070000000000000004000000}
+        ItemsAppearance.SelectedFill.Color = xFFBFDBFE
+        ItemsAppearance.SelectedFont.Color = xFF172033
+        ItemsAppearance.DisabledTitleFont.StyleExt = {00070000000000000004000000}
+        OnGetItemText = PlannerGetItemText
+        OnBeforeMoveItem = PlannerBeforeChange
+        OnAfterMoveItem = PlannerAfterChange
+        OnBeforeSizeItem = PlannerBeforeChange
+        OnAfterSizeItem = PlannerAfterChange
+      end
+    end
+  end
+  object Panel1: TPanel
+    Align = Top
+    Size.Width = 1440.000000000000000000
+    Size.Height = 120.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    object ServiceLabel: TLabel
+      Position.X = 16.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 200.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Service'
+      TabOrder = 0
+    end
+    object ServiceComboBox: TComboBox
+      Position.X = 16.000000000000000000
+      Position.Y = 40.000000000000000000
+      Size.Width = 200.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      OnChange = ServiceComboBoxChange
+    end
+    object APIKeyLabel: TLabel
+      Position.X = 232.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 200.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'API key'
+      TabOrder = 2
+    end
+    object APIKeyEdit: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 3
+      Password = True
+      Position.X = 232.000000000000000000
+      Position.Y = 40.000000000000000000
+      Size.Width = 1192.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TextPrompt = 'Enter API key'
+      OnChangeTracking = APIKeyEditChangeTracking
+    end
+    object FeatureSupportLabel: TLabel
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 16.000000000000000000
+      Position.Y = 84.000000000000000000
+      Size.Width = 1408.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      Text = 
+        'Choose a service and a model with tool calling support. Ask the ' +
+        'assistant to book work, find free time, or replan the day. Drag ' +
+        'appointments to try changes yourself.'
+      TabOrder = 7
+    end
+  end
+  object BusyStateTimer: TTimer
+    Interval = 250
+    OnTimer = UpdateBusyState
+    Left = 840
+    Top = 40
+  end
+  object TMSMCPCloudAI1: TTMSMCPCloudAI
+    Service = aiOpenAI
+    Settings.GeminiModel = 'gemini-2.5-flash'
+    Settings.OpenAIModel = 'gpt-5.4-mini-2026-03-17'
+    Settings.OpenAISoundModel = 'gpt-4o-mini-tts'
+    Settings.OpenAITranscribeModel = 'whisper-1'
+    Settings.OpenRouterModel = 'z-ai/glm-5.3-flash'
+    Settings.GrokModel = 'grok-4-1-fast-reasoning'
+    Settings.ClaudeModel = 'claude-sonnet-4-6'
+    Settings.OllamaModel = 'llama3.2:latest'
+    Settings.DeepSeekModel = 'deepseek-chat'
+    Settings.PerplexityModel = 'sonar-pro'
+    Settings.OllamaHost = 'localhost'
+    Settings.OllamaPath = '/api/chat'
+    Settings.LlamaCppHost = 'localhost'
+    Settings.LlamaCppPath = '/v1/chat/completions'
+    Settings.MistralModel = 'mistral-large-latest'
+    Settings.MistralTranscribeModel = 'voxtral-mini-2507'
+    Tools = <
+      item
+        Name = 'get_schedule'
+        Description = 
+          'Read the live Planner: demo date, resource IDs and roles, workin' +
+          'g hours, and all appointments including current selection and lo' +
+          'cked lunch breaks. Call at the start of each scheduling request;' +
+          ' manual drag and resize changes are live.'
+        Parameters = <>
+        OnExecute = PlannerToolExecute
+      end
+      item
+        Name = 'find_free_slots'
+        Description = 
+          'Find free slots for ALL listed resources together. Pass one ID f' +
+          'or one person, several IDs for a meeting. Returns found, chronol' +
+          'ogical slots, earliest_slot (null when none), and longest_common' +
+          '_free_minutes. Do not invent a time when found=false. Read-only;' +
+          ' does not move or book work.'
+        Parameters = <
+          item
+            ArrayProperties = <>
+            Name = 'resource_ids'
+            Type = ptArray
+            Description = 
+              'Nonempty list of resource IDs from get_schedule. For everyone, i' +
+              'nclude ALL resources.'
+            Properties = <>
+          end
+          item
+            ArrayProperties = <>
+            Name = 'duration_minutes'
+            Type = ptNumber
+            Description = 
+              'Meeting duration supplied by the user: integer 15 to 480, divisi' +
+              'ble by 15. Ask if unknown.'
+            Properties = <>
+          end
+          item
+            ArrayProperties = <>
+            Name = 'earliest'
+            Type = ptString
+            Description = 'Earliest start HH:MM; use 09:00 when searching the whole day'
+            Properties = <>
+          end
+          item
+            ArrayProperties = <>
+            Name = 'latest'
+            Type = ptString
+            Description = 'Latest end HH:MM; use 18:00 when searching the whole day'
+            Properties = <>
+          end>
+        OnExecute = PlannerToolExecute
+      end
+      item
+        Name = 'create_appointment'
+        Description = 
+          'Book work for one resource. Rejects overlaps, lunch, invalid tim' +
+          'es, and appointments outside 09:00-18:00. Returns the new appoin' +
+          'tment.'
+        Parameters = <
+          item
+            ArrayProperties = <>
+            Name = 'title'
+            Type = ptString
+            Description = 'Appointment title, 1 to 120 characters'
+            Properties = <>
+          end
+          item
+            ArrayProperties = <>
+            Name = 'resource_id'
+            Type = ptString
+            Description = 'Resource ID from get_schedule'
+            Properties = <>
+          end
+          item
+            ArrayProperties = <>
+            Name = 'start_time'
+            Type = ptString
+            Description = 'Start HH:MM, on a 15-minute boundary'
+            Properties = <>
+          end
+          item
+            ArrayProperties = <>
+            Name = 'end_time'
+            Type = ptString
+            Description = 'End HH:MM, on a 15-minute boundary'
+            Properties = <>
+          end
+          item
+            ArrayProperties = <>
+            Name = 'notes'
+            Type = ptString
+            Description = 
+              'Optional details as a string; use empty string for none, maximum' +
+              ' 1000 characters'
+            Properties = <>
+          end>
+        OnExecute = PlannerToolExecute
+      end
+      item
+        Name = 'reschedule_appointments'
+        Description = 
+          'Move or resize one or more existing appointments as one atomic c' +
+          'hange. Delphi validates the FINAL schedule before changing anyth' +
+          'ing. Use this for overruns, swaps and replanning; include every ' +
+          'affected appointment. When the user asks to rearrange a person'#39's' +
+          ' afternoon, moving that person'#39's other nonlocked afternoon appoi' +
+          'ntments is already authorized. Extend the target by the requeste' +
+          'd amount and move later appointments as needed. Preserve OTHER a' +
+          'ppointments'#39' durations and assignees. Locked lunch cannot move. ' +
+          'Temporary overlaps do not matter; only the final schedule must b' +
+          'e conflict-free. If validation fails, revise the complete plan a' +
+          'nd retry.'
+        Parameters = <
+          item
+            ArrayType = ptObject
+            ArrayProperties = <
+              item
+                ArrayProperties = <>
+                Name = 'appointment_id'
+                Type = ptString
+                Description = 'Stable ID from get_schedule'
+                Properties = <>
+              end
+              item
+                ArrayProperties = <>
+                Name = 'resource_id'
+                Type = ptString
+                Description = 'Keep the original resource unless reassignment was requested'
+                Properties = <>
+              end
+              item
+                ArrayProperties = <>
+                Name = 'start_time'
+                Type = ptString
+                Description = 
+                  'Final start HH:MM. Keep the target start when extending an overr' +
+                  'un.'
+                Properties = <>
+              end
+              item
+                ArrayProperties = <>
+                Name = 'end_time'
+                Type = ptString
+                Description = 
+                  'Final end HH:MM. Extend the target; preserve durations of other ' +
+                  'moved work.'
+                Properties = <>
+              end>
+            Name = 'changes'
+            Type = ptArray
+            Description = 
+              'Complete final placements for ALL affected appointments, includi' +
+              'ng the extended target and other appointments that must move. Cu' +
+              'rrent IDs only. Unlisted appointments keep their existing placem' +
+              'ent.'
+            Properties = <>
+          end>
+        OnExecute = PlannerToolExecute
+      end>
+    Left = 704
+    Top = 32
+  end
+end

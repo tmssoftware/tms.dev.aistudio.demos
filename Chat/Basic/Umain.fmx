@@ -1,0 +1,162 @@
+object Form3: TForm3
+  Left = 0
+  Top = 0
+  Caption = 'AI Chat Demo'
+  ClientHeight = 622
+  ClientWidth = 824
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object TMSMCPChatView1: TTMSMCPChatView
+    Touch.InteractiveGestures = [LongTap]
+    Messages = <>
+    Appearance.Buttons.Color = xFFEFF3F9
+    Appearance.Buttons.TextColor = xFF202936
+    Appearance.Buttons.BorderColor = xFFA0B2C8
+    Appearance.Buttons.HoverColor = xFFDEEBFB
+    Appearance.Buttons.PressedColor = xFFB8D3F4
+    Appearance.Buttons.DisabledColor = xFFE9ECF0
+    Appearance.Buttons.DisabledTextColor = xFF707885
+    Appearance.Buttons.FocusColor = xFF1766C2
+    Appearance.Options.Color = xFFEFF3F9
+    Appearance.Options.TextColor = claBlack
+    Appearance.Options.BorderColor = xFFA0B2C8
+    Appearance.Options.PrimaryColor = xFF1766C2
+    Appearance.Options.PrimaryTextColor = claWhite
+    Appearance.Options.DestructiveColor = xFFB82828
+    Appearance.Options.SelectedColor = xFFCCE2FC
+    Appearance.Options.HoverColor = xFFDEEBFB
+    Appearance.Options.PressedColor = xFFB8D3F4
+    Appearance.Options.DisabledColor = xFFE9ECF0
+    Appearance.Options.DisabledTextColor = xFF707885
+    Appearance.Options.FocusColor = xFF1766C2
+    Appearance.BackgroundColor = xFFF3F5F8
+    Appearance.IncomingColor = claWhite
+    Appearance.OutgoingColor = xFFE4EFFF
+    Appearance.TextColor = xFF202936
+    Appearance.AccentColor = xFF1766C2
+    Appearance.FontName = 'Arial'
+    Appearance.SenderFontSize = 11.000000000000000000
+    Appearance.StatusFontName = 'Arial'
+    Appearance.StatusFontSize = 11.000000000000000000
+    Appearance.StatusColor = xFF647082
+    Appearance.RemoveAttachmentText = 'Remove'
+    Interaction.EnableCloudAIImageGeneration = True
+    Interaction.EnableCloudAIFileCreation = True
+    Interaction.EnableCloudAIInteractions = True
+    CloudAI = TMSMCPCloudAI1
+    Align = Client
+  end
+  object Panel1: TPanel
+    Align = Top
+    Size.Width = 824.000000000000000000
+    Size.Height = 164.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    object ServiceLabel: TLabel
+      Position.X = 16.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 200.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Service'
+      TabOrder = 0
+    end
+    object ServiceComboBox: TComboBox
+      Position.X = 16.000000000000000000
+      Position.Y = 40.000000000000000000
+      Size.Width = 200.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      OnChange = ServiceComboBoxChange
+    end
+    object APIKeyLabel: TLabel
+      Position.X = 232.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 200.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'API key'
+      TabOrder = 2
+    end
+    object APIKeyEdit: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 3
+      Password = True
+      Position.X = 232.000000000000000000
+      Position.Y = 40.000000000000000000
+      Size.Width = 576.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TextPrompt = 'Enter API key'
+      OnChangeTracking = APIKeyEditChangeTracking
+    end
+    object InteractionsCheckBox: TCheckBox
+      Position.X = 16.000000000000000000
+      Position.Y = 88.000000000000000000
+      Size.Width = 160.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 4
+      Text = 'Interactions'
+      OnChange = FeatureCheckBoxChange
+    end
+    object ImageGenerationCheckBox: TCheckBox
+      Position.X = 192.000000000000000000
+      Position.Y = 88.000000000000000000
+      Size.Width = 184.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 5
+      Text = 'Image generation'
+      OnChange = FeatureCheckBoxChange
+    end
+    object FileGenerationCheckBox: TCheckBox
+      Position.X = 392.000000000000000000
+      Position.Y = 88.000000000000000000
+      Size.Width = 184.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 6
+      Text = 'File generation'
+      OnChange = FeatureCheckBoxChange
+    end
+    object FeatureSupportLabel: TLabel
+      Anchors = [akLeft, akTop, akRight]
+      Position.X = 16.000000000000000000
+      Position.Y = 120.000000000000000000
+      Size.Width = 792.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 7
+      Text = 'Some services and models do not support these features. Consult the documentation for service and model capabilities.'
+      TextSettings.WordWrap = True
+    end
+  end
+  object TMSMCPCloudAI1: TTMSMCPCloudAI
+    Service = aiOpenAI
+    Settings.GeminiModel = 'gemini-2.5-flash'
+    Settings.OpenAIModel = 'gpt-5.4-mini-2026-03-17'
+    Settings.OpenAISoundModel = 'gpt-4o-mini-tts'
+    Settings.OpenAITranscribeModel = 'whisper-1'
+    Settings.OpenRouterModel = 'z-ai/glm-5.3-flash'
+    Settings.GrokModel = 'grok-4-1-fast-reasoning'
+    Settings.ClaudeModel = 'claude-sonnet-4-6'
+    Settings.OllamaModel = 'llama3.2:latest'
+    Settings.DeepSeekModel = 'deepseek-chat'
+    Settings.PerplexityModel = 'sonar-pro'
+    Settings.OllamaHost = 'localhost'
+    Settings.OllamaPath = '/api/chat'
+    Settings.LlamaCppHost = 'localhost'
+    Settings.LlamaCppPath = '/v1/chat/completions'
+    Settings.MistralModel = 'mistral-large-latest'
+    Settings.MistralTranscribeModel = 'voxtral-mini-2507'
+    Tools = <>
+    Left = 728
+    Top = 32
+  end
+end
