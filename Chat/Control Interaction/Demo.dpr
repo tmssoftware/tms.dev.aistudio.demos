@@ -3,7 +3,8 @@
 uses
   System.StartUpCopy,
   FMX.Forms,
-  Umain in 'Umain.pas' {Form3};
+  Umain in 'Umain.pas' {Form3},
+  UPlannerTools in 'UPlannerTools.pas';
 
 {$R *.res}
 
